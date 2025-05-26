@@ -100,7 +100,7 @@ U ovoj relaciji nisu eksplicitno navedena ograničenja NOT NULL, ali se pretpost
 
 ![Screenshot 2025-05-26 203021](https://github.com/user-attachments/assets/3286d3ae-a43c-446e-af97-78695090719e)
 
-**Relacija Rezervacija**\
+**Relacija rezervacija**\
 
 Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za određene stolove u kafiću. Svaka rezervacija uključuje informaciju o vremenu, broju osoba te statusu rezervacije. Relacija se sastoji od sljedećih atributa:
 
