@@ -5,7 +5,7 @@ Cilj naše baze podataka je omogućiti kvalitetno i jasno vođenje osnovnih oper
 
 ## Opis ER dijagrama
 
-![er](https://github.com/user-attachments/assets/c68751f2-a408-43b5-ac22-b7100ebaa69d)
+![er (1)](https://github.com/user-attachments/assets/8896182e-019b-423d-a21b-a63e044224ac)
 
 ntitet **Kupac** predstavlja osobu koja koristi usluge restorana. Sadrži atribute poput KupacID, Ime, Prezime, Telefon, Email i StatusVjernosti, što omogućuje razlikovanje redovnih gostiju i onih koji možda ostvaruju određene pogodnosti.
 
