@@ -100,6 +100,21 @@ U ovoj relaciji nisu eksplicitno navedena ograničenja NOT NULL, ali se pretpost
 
 ![Screenshot 2025-05-26 203021](https://github.com/user-attachments/assets/3286d3ae-a43c-446e-af97-78695090719e)
 
+**Relacija Rezervacija**\
+
+Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za određene stolove u kafiću. Svaka rezervacija uključuje informaciju o vremenu, broju osoba te statusu rezervacije. Relacija se sastoji od sljedećih atributa:
+
+*RezervacijaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i jedinstveno identificira svaku rezervaciju, ne smije biti NULL.
+
+*KupacID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Kupac, te ne smije biti NULL.
+
+*StolID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Stol, ne smije biti NULL.
+
+*DatumVrijeme* – podatak tipa DATETIME, koji označava točan datum i vrijeme kada je rezervacija zakazana, ne smije biti NULL.
+
+*BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena, ne smije biti NULL.
+
+*Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”, ne smije biti NULL.
 
 
 
