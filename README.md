@@ -1,8 +1,7 @@
 ## UVOD
 
-U priloženoj dokumentaciji prezentirat ćemo naš projektni zadatak iz kolegija Baze podataka 1. Tema projekta je izrada baze podataka za vođenje poslovanja kafića. Kao prvi korak izrade baze podataka odlučili smo generirati vlastite tablice i podatke, kako bismo pojednostavili unos i izbjegli oslanjanje na vanjske izvore.
-Cilj naše baze podataka je omogućiti kvalitetno i jasno vođenje osnovnih operacija u kafiću. Prikazujemo osnovne informacije o proizvodima, zaposlenima, narudžbama, zalihama 
-
+U priloženoj dokumentaciji prezentirat ćemo naš projektni zadatak iz kolegija Baze podataka 1. Cilj projekta je razviti funkcionalan model baze podataka koji omogućuje učinkovito upravljanje različitim aspektima rada kafića, uključujući narudžbe, rezervacije, zaposlenike, zalihe sirovina i financijske transakcije. 
+Kao prvi korak izrade baze podataka odlučili smo generirati vlastite tablice i podatke, kako bismo pojednostavili unos točnih podataka i izbjegli oslanjanje na vanjske izvore.
 ## Opis ER dijagrama
 
 ![er (1)](https://github.com/user-attachments/assets/8896182e-019b-423d-a21b-a63e044224ac)
