@@ -90,11 +90,11 @@ Ograničenje NOT NULL označava da vrijednosti za atribute brojStola i kapacitet
 **Relacija narudzba**\
 Evidentira informacije o narudžbama koje kupci ostvaruju, sastoji se od sljedećih atributa:
 
-- **narudzbaID** – podatak tipa *INTEGER*, koji je **primarni ključ** unutar relacije
-- **datumVrijeme** – podatak tipa *DATETIME*, označava točno vrijeme narudžbe
-- **kupacID** – podatak tipa *INTEGER*, predstavlja **strani ključ** koji referencira kupca koji je napravio narudžbu
-- **stolID** – podatak tipa *INTEGER*, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
-- **zaposlenikID** – podatak tipa *INTEGER*, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
+- **narudzbaID** – podatak tipa INTEGER, koji je **primarni ključ** unutar relacije
+- **datumVrijeme** – podatak tipa DATETIME, označava točno vrijeme narudžbe
+- **kupacID** – podatak tipa INTEGER, predstavlja **strani ključ** koji referencira kupca koji je napravio narudžbu
+- **stolID** – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
+- **zaposlenikID** – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
 
 U ovoj relaciji nisu eksplicitno navedena ograničenja NOT NULL, ali se pretpostavlja da su kupacID, datumVrijeme i zaposlenikID važni za integritet podataka te bi u konačnoj verziji trebali imati dodatna ograničenja poput NOT NULL i FOREIGN KEY odnosa.
 
