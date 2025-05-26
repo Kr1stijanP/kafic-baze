@@ -10,7 +10,7 @@ Skup entiteta Kupac povezan je s entitetom Rezervacija u odnosu više naprema je
 
 Skup entiteta Rezervacija povezan je s entitetom Stol preko veze više naprema jedan, jer više rezervacija može biti vezano za isti stol, ali pojedina rezervacija odnosi se samo na jedan stol u određeno vrijeme.
 
-Skup entiteta Kupac također je posredno povezan s entitetom Narudzba, jer nakon što kupac sjedne za stol, može izvršiti jednu ili više narudžbi. Veza između Kupac i Narudzba bila bi više naprema jedan – jedan kupac može napraviti više narudžbi, dok svaka narudžba pripada jednom kupcu (ili stol rezerviranom od strane kupca).
+Skup entiteta Kupac također je posredno povezan s entitetom Narudzba, jer nakon što kupac sjedne za stol, može izvršiti jednu ili više narudžbi. Veza između Kupac i Narudzba bila bi više naprema jedan – jedan kupac može napraviti više narudžbi, dok svaka narudžba pripada jednom kupcu (ili stolu).
 
 Entitet Narudzba povezan je s entitetom StavkaNarudzbe u vezi jedan naprema više – jedna narudžba može sadržavati više stavki (jela i pića), dok svaka stavka pripada samo jednoj narudžbi.
 
@@ -32,7 +32,7 @@ Entitet StavkaNabavneNarudzbe povezan je s entitetom NabavnaNarudzba u vezi viš
 
 Entitet NabavnaNarudzba povezan je s entitetom Dobavljac u vezi više naprema jedan – više narudžbi može biti naručeno od istog dobavljača, dok se jedna narudžba upućuje jednom dobavljaču.
 
-Entitet Proizvod povezan je s entitetom Dobavljac i preko pomoćnog entiteta ProizvodDobavljac, koji omogućuje više naprema više vezu – jedan proizvod može imati više dobavljača, a jedan dobavljač može isporučivati više proizvoda. Ova veza sadrži i dodatne atribute kao što je RokIsporuke.
+Entitet Proizvod povezan je s entitetom Dobavljac preko pomoćnog entiteta ProizvodDobavljac, koji omogućuje vezu više naprema više – jedan proizvod može imati više dobavljača, a jedan dobavljač može isporučivati više proizvoda. Ova veza sadrži dodatni atribut RokIsporuke.
 
 ## Relacije, atributi i ograničenja
 
