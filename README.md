@@ -76,6 +76,18 @@ Ograničenje NOT NULL označava da vrijednost za atribut nazivUloge mora biti un
 
 ![Screenshot 2025-05-26 190336](https://github.com/user-attachments/assets/8060f073-e63a-4022-8199-d8365452edd0)
 
+**Relacija stol**\  
+Evidentira informacije o stolovima u objektu, sastoji od sljedećih atributa:  
+
+*stolID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije  
+*brojStola* – podatak tipa INTEGER, koji ne smije biti NOT NULL  
+*kapacitet* – podatak tipa INTEGER, koji ne smije biti NOT NULL
+
+Ograničenje NOT NULL označava da vrijednosti za atribute brojStola i kapacitet moraju biti unesene. Na taj način se osigurava da svaki stol ima dodijeljen broj i broj osoba koje može primiti.
+
+![Screenshot 2025-05-26 195426](https://github.com/user-attachments/assets/22701f11-b191-41e8-a60e-5a7dd9ba70cc)
+
+
 
 
 
