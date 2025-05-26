@@ -44,7 +44,7 @@ Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija 
 Relacija **zaposlenik**\
 Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
 
-*zaposlenikID* – podatak tipa integer, koji je primarni ključ unutar relacije
+**zaposlenikID* – podatak tipa integer, koji je primarni ključ unutar relacije
 
 *ime* – podatak tipa varchar(255), koji ne smije biti null
 
