@@ -40,3 +40,21 @@ Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija 
 *Email – podatak tipa varchar, maksimalne duljine 255 znakova. Koristi se za kontakt podatke te može biti koristan pri rezervacijama ili programu vjernosti.*
 *StatusVjernosti – podatak tipa varchar, maksimalne duljine 255 znakova. Označava razinu lojalnosti kupca (npr. “standardni”, “član”, “VIP”) te se može koristiti u svrhu nagrađivanja redovitih gostiju.*
 *Svi atributi mogu sadržavati null vrijednosti osim primarnog ključa, a dodatna ograničenja (kao što su not null ili unique) mogu se dodati ovisno o potrebama daljnjeg razvoja baze i validacije podataka.*
+
+Relacija **zaposlenik**
+Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
+
+*zaposlenikID* – podatak tipa integer, koji je primarni ključ unutar relacije
+
+*ime* – podatak tipa varchar(255), koji ne smije biti null
+
+*prezime* – podatak tipa varchar(255), koji ne smije biti null
+
+*ulogaID* – podatak tipa integer, predstavlja strani ključ koji referencira relaciju uloga
+
+*telefon* – podatak tipa varchar(255)
+
+*email* – podatak tipa varchar(255), mora biti jedinstven
+
+Ograničenje NOT NULL označava da podaci ime i prezime ne smiju biti null tipa podatka. Atribut email je dodatno ograničen kao jedinstven (UNIQUE). Atribut ulogaID može biti null ako zaposlenik nije dodijeljen nijednoj ulozi.
+
