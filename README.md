@@ -40,8 +40,6 @@ Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija 
 - StatusVjernosti – podatak tipa varchar, maksimalne duljine 255 znakova. Označava razinu lojalnosti kupca (npr. “standardni”, “član”, “VIP”) te se može koristiti u svrhu nagrađivanja redovitih gostiju.
 - Svi atributi mogu sadržavati null vrijednosti osim primarnog ključa, a dodatna ograničenja (kao što su not null ili unique) mogu se dodati ovisno o potrebama daljnjeg razvoja baze i validacije podataka.
 
-![Screenshot 2025-05-26 183633](https://github.com/user-attachments/assets/bb7bfac7-babe-49f2-98a1-9bcea5969a07)
-
 Relacija **zaposlenik**\
 Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
 
@@ -54,6 +52,5 @@ Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
 
 Ograničenje NOT NULL označava da podaci ime i prezime ne smiju biti null tipa podatka. Atribut email je dodatno ograničen kao jedinstven (UNIQUE). Atribut ulogaID može biti null ako zaposlenik nije dodijeljen nijednoj ulozi.
 
-![Screenshot 2025-05-26 183822](https://github.com/user-attachments/assets/a2321001-e7cc-4a66-9e1d-4f6c3b13118f)
 
 
