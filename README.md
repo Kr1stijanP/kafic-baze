@@ -30,7 +30,7 @@ Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se n
 
 
 Relacija **kupac**\
-Evidentira podatke o kupcima. Relacija kupac se sastoji od sljedećih atributa:
+Evidentira podatke o kupcima, sastoji od sljedećih atributa:
 
 - *kupacID* – podatak tipa INT, koji je primarni ključ unutar relacije
 - *ime* – podatak tipa VARCHAR(255), koji ne smije biti NULL
