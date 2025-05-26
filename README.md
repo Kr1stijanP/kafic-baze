@@ -5,6 +5,9 @@ Cilj naše baze podataka je omogućiti kvalitetno i jasno vođenje osnovnih oper
 
 ## Opis ER dijagrama
 
+![er](https://github.com/user-attachments/assets/2e20ceca-747c-4671-93c2-cae71b720758)
+
+
 ntitet **Kupac** predstavlja osobu koja koristi usluge restorana. Sadrži atribute poput KupacID, Ime, Prezime, Telefon, Email i StatusVjernosti, što omogućuje razlikovanje redovnih gostiju i onih koji možda ostvaruju određene pogodnosti.
 
 **Rezervacija** je povezana s kupcem i definira kada je određeni gost rezervirao stol. Entitet ima RezervacijaID i DatumVrijeme, a preko veze "Rezervira", povezan je s entitetom Kupac. To implicira da jedan kupac može imati više rezervacija, a svaka rezervacija pripada jednom kupcu (1:N veza).
