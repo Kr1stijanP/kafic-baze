@@ -76,7 +76,7 @@ Ograničenje NOT NULL označava da vrijednost za atribut nazivUloge mora biti un
 
 ![Screenshot 2025-05-26 190336](https://github.com/user-attachments/assets/8060f073-e63a-4022-8199-d8365452edd0)
 
-**Relacija stol**
+**Relacija stol**\
 Evidentira informacije o stolovima u objektu, sastoji od sljedećih atributa:  
 
 *stolID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije  
