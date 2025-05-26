@@ -27,3 +27,5 @@ Svaka narudžba rezultira **plaćanjem**, koje se evidentira u entitetu Placanje
 Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se nalaze u zalihama -**ZalihaSirovine** koje prati KolicinaNaSkladistu. Zalihe se ažuriraju prema isporukama i potrošnji u proizvodima.
 
 ## Relacije, atributi i ograničenja
+
+Relacija **kupac**
