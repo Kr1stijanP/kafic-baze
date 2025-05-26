@@ -42,7 +42,6 @@ Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija 
 
 ![Screenshot 2025-05-26 183633](https://github.com/user-attachments/assets/bb7bfac7-babe-49f2-98a1-9bcea5969a07)
 
-
 Relacija **zaposlenik**\
 Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
 
@@ -54,4 +53,7 @@ Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
 - *email* – podatak tipa varchar(255), mora biti jedinstven
 
 Ograničenje NOT NULL označava da podaci ime i prezime ne smiju biti null tipa podatka. Atribut email je dodatno ograničen kao jedinstven (UNIQUE). Atribut ulogaID može biti null ako zaposlenik nije dodijeljen nijednoj ulozi.
+
+![Screenshot 2025-05-26 183822](https://github.com/user-attachments/assets/a2321001-e7cc-4a66-9e1d-4f6c3b13118f)
+
 
