@@ -58,6 +58,17 @@ Ograničenje NOT NULL označava da podaci ime i prezime ne smiju biti null tipa 
 
 ![Screenshot 2025-05-26 184845](https://github.com/user-attachments/assets/4444456b-e53f-4486-9b9d-53b162e5e36b)
 
+Relacija **uloga**\
+Evidentira vrste uloga koje zaposlenici mogu imati. Relacija uloga se sastoji od sljedećih atributa:
+
+- *ulogaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
+- *nazivUloge* – podatak tipa VARCHAR(255), koji ne smije biti NOT NULL
+
+Ograničenje NOT NULL označava da vrijednost za atribut nazivUloge mora biti unesena – npr. konobar, kuhar, menadžer itd.
+
+![Screenshot 2025-05-26 190336](https://github.com/user-attachments/assets/8060f073-e63a-4022-8199-d8365452edd0)
+
+
 
 
 
