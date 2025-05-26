@@ -30,7 +30,6 @@ Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se n
 
 
 Relacija __Kupac__
-
 Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija Kupac sastoji se od sljedećih atributa:
 
 - KupacID – podatak tipa int, koji predstavlja primarni ključ unutar relacije. Jedinstveno identificira svakog kupca u bazi podataka.
