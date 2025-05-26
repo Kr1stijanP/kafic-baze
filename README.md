@@ -32,13 +32,14 @@ Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se n
 Relacija **Kupac**\
 Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija Kupac sastoji se od sljedećih atributa:
 
-- KupacID – podatak tipa int, koji predstavlja primarni ključ unutar relacije. Jedinstveno identificira svakog kupca u bazi podataka.
-- Ime – podatak tipa varchar, maksimalne duljine 255 znakova. 
-- Prezime – podatak tipa varchar, maksimalne duljine 255 znakova. 
-- Telefon – podatak tipa varchar, maksimalne duljine 255 znakova. 
-- Email – podatak tipa varchar, maksimalne duljine 255 znakova. 
-- StatusVjernosti – podatak tipa varchar, maksimalne duljine 255 znakova. Označava razinu lojalnosti kupca (npr. “standardni”, “član”, “VIP”) te se može koristiti u svrhu nagrađivanja redovitih gostiju.
-- Svi atributi mogu sadržavati null vrijednosti osim primarnog ključa, a dodatna ograničenja (kao što su not null ili unique) mogu se dodati ovisno o potrebama daljnjeg razvoja baze i validacije podataka.
+- *KupacID* – podatak tipa int, koji predstavlja primarni ključ unutar relacije. Jedinstveno identificira svakog kupca u bazi podataka.
+- *Ime* – podatak tipa varchar, maksimalne duljine 255 znakova. 
+- *Prezime* – podatak tipa varchar, maksimalne duljine 255 znakova. 
+- *Telefon* – podatak tipa varchar, maksimalne duljine 255 znakova. 
+- *Email* – podatak tipa varchar, maksimalne duljine 255 znakova. 
+- *StatusVjernosti* – podatak tipa varchar, maksimalne duljine 255 znakova. Označava razinu lojalnosti kupca (npr. “standardni”, “član”, “VIP”) te se može koristiti u svrhu nagrađivanja redovitih gostiju.
+
+Svi atributi mogu sadržavati NULL vrijednosti osim primarnog ključa, a dodatna ograničenja (kao što su not null ili unique) mogu se dodati ovisno o potrebama daljnjeg razvoja baze i validacije podataka.
 
 ![Screenshot 2025-05-26 184714](https://github.com/user-attachments/assets/086bf875-16fa-44cc-a705-26f5cb7b3344)
 
