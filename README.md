@@ -87,6 +87,22 @@ Ograničenje NOT NULL označava da vrijednosti za atribute brojStola i kapacitet
 
 ![Screenshot 2025-05-26 195426](https://github.com/user-attachments/assets/22701f11-b191-41e8-a60e-5a7dd9ba70cc)
 
+**Relacija narudzba**\
+Evidentira informacije o narudžbama koje kupci ostvaruju, sastoji se od sljedećih atributa:
+
+**narudzbaID** – podatak tipa *INTEGER*, koji je **primarni ključ** unutar relacije
+
+**datumVrijeme** – podatak tipa *DATETIME*, označava točno vrijeme narudžbe
+
+**kupacID** – podatak tipa *INTEGER*, predstavlja **strani ključ** koji referencira kupca koji je napravio narudžbu
+
+**stolID** – podatak tipa *INTEGER*, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
+
+**zaposlenikID** – podatak tipa *INTEGER*, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
+
+U ovoj relaciji nisu eksplicitno navedena ograničenja NOT NULL, ali se pretpostavlja da su kupacID, datumVrijeme i zaposlenikID važni za integritet podataka te bi u konačnoj verziji trebali imati dodatna ograničenja poput NOT NULL i FOREIGN KEY odnosa.
+
+![Screenshot 2025-05-26 203021](https://github.com/user-attachments/assets/3286d3ae-a43c-446e-af97-78695090719e)
 
 
 
