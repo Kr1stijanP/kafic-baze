@@ -29,7 +29,7 @@ Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se n
 ## Relacije, atributi i ograničenja
 
 
-Relacija Kupac
+Relacija _ _Kupac
 
 Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija Kupac sastoji se od sljedećih atributa:
 
