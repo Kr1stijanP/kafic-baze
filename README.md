@@ -110,6 +110,9 @@ Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za odre�
 - *BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena, ne smije biti NULL.
 - *Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”, ne smije biti NULL.
 
+ ![Screenshot 2025-05-26 204903](https://github.com/user-attachments/assets/b5e7c806-3ab3-4371-9619-e2f8b93381d8)
+
+
 
 
 
