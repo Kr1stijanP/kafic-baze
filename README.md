@@ -6,25 +6,33 @@ Kao prvi korak izrade baze podataka odlučili smo generirati vlastite tablice i 
 
 [Link na ER dijagram](https://lucid.app/lucidchart/7e3ca596-78ec-4f8d-9e66-618cb6cf1f40/edit?viewport_loc=-2689%2C-743%2C4235%2C1887%2C0_0&invitationId=inv_76bfcfcb-73cd-451d-8128-f57a1b90cb83)
 
-Entitet **Kupac** predstavlja osobu koja koristi usluge restorana. Sadrži atribute poput KupacID, Ime, Prezime, Telefon, Email i StatusVjernosti, što omogućuje razlikovanje redovnih gostiju i onih koji možda ostvaruju određene pogodnosti.
+Skup entiteta Kupac povezan je s entitetom Rezervacija u odnosu više naprema jedan, jer jedan kupac može napraviti više rezervacija, dok svaka rezervacija pripada samo jednom kupcu.
 
-**Rezervacija** je povezana s kupcem i definira kada je određeni gost rezervirao stol. Entitet ima RezervacijaID i DatumVrijeme, a preko veze "Rezervira", povezan je s entitetom Kupac. To implicira da jedan kupac može imati više rezervacija, a svaka rezervacija pripada jednom kupcu (1:N veza).
+Skup entiteta Rezervacija povezan je s entitetom Stol preko veze više naprema jedan, jer više rezervacija može biti vezano za isti stol, ali pojedina rezervacija odnosi se samo na jedan stol u određeno vrijeme.
 
-Entitet **Zaposlenik** opisuje djelatnike restorana putem atributa poput ZaposlenikID, Ime, Prezime, Telefon i Email. Svaki zaposlenik također ima pridruženu Ulogu kroz entitet Uloga, koji određuje funkciju zaposlenika.
+Skup entiteta Kupac također je posredno povezan s entitetom Narudzba, jer nakon što kupac sjedne za stol, može izvršiti jednu ili više narudžbi. Veza između Kupac i Narudzba bila bi više naprema jedan – jedan kupac može napraviti više narudžbi, dok svaka narudžba pripada jednom kupcu (ili stol rezerviranom od strane kupca).
 
-Zaposlenik može biti raspoređen na više **smjena**. Svaka Smjena ima svoj SmjenaID, DatumVrijemePocetka i DatumVrijemeZavrsetka. Veza "Radi" povezuje zaposlenika sa smjenom.
+Entitet Narudzba povezan je s entitetom StavkaNarudzbe u vezi jedan naprema više – jedna narudžba može sadržavati više stavki (jela i pića), dok svaka stavka pripada samo jednoj narudžbi.
 
-Entitet **Stol** predstavlja fizičke stolove u restoranu. Svaki stol ima StolID, BrojStola i Kapacitet. Stol je povezan s rezervacijom putem veze "Za_stol", što omogućuje rezervaciju konkretnog stola u određeno vrijeme.
+Entitet StavkaNarudzbe povezan je s entitetom Proizvod preko veze više naprema jedan – više stavki narudžbe mogu sadržavati isti proizvod, dok se svaka stavka odnosi samo na jedan proizvod.
 
-**Narudžbe** koje kupci izvršavaju po dolasku evidentiraju se u entitetu Narudzba, koji ima NarudzbaID i DatumVrijeme. Svaka narudžba se sastoji od više stavki narudžbe -**StavkaNarudzbe**, što se prikazuje vezom "Sadrži". Svaka stavka uključuje ProizvodID, Kolicina i JedinicnaCijena.
+Entitet Proizvod povezan je s entitetom KategorijaProizvoda u vezi više naprema jedan, jer više proizvoda može pripadati istoj kategoriji (npr. pića, glavna jela), dok svaki proizvod pripada jednoj kategoriji.
 
-Svaka narudžba rezultira **plaćanjem**, koje se evidentira u entitetu Placanje s atributima PlacanjeID, Iznos, NacinPlacanja i DatumVrijeme. Veza "Plaća" povezuje narudžbu i plaćanje.
+Skup entiteta Narudzba povezan je s entitetom Placanje u vezi jedan naprema jedan – svaka narudžba ima točno jedno plaćanje, dok se jedno plaćanje odnosi samo na jednu narudžbu.
 
-**Proizvod** opisuje artikle koji se nude u restoranu, s atributima ProizvodID, Naziv, Opis i Cijena. Svaki proizvod pripada određenoj kategoriji -**KategorijaProizvoda**, poput pića, predjela, glavnih jela itd., kroz vezu "Klasificira".
+Entitet Zaposlenik povezan je s entitetom Uloga preko veze više naprema jedan – više zaposlenika može imati istu ulogu (npr. konobar, kuhar), dok jedan zaposlenik ima samo jednu ulogu.
 
-**Dobavljac** predstavlja vanjske suradnike koji dostavljaju sirovine za pripremu proizvoda. Sadrži atribute poput DobavljacID, Naziv, Telefon i Email. Povezan je s entitetom Proizvod preko veze "Opskrbljuje" – gdje se definira i RokIsporuke. Sirovine se naručuju putem NabavnaNarudzba, a svaka narudžba može sadržavati više stavki -**StavkaNabavneNarudzbe**, uključujući količinu i odabranu sirovinu.
+Entitet Zaposlenik povezan je s entitetom Smjena u vezi više naprema više – jedan zaposlenik može raditi u više smjena, dok jedna smjena može uključivati više zaposlenika. Ta veza omogućuje praćenje rasporeda rada.
 
-Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se nalaze u zalihama -**ZalihaSirovine** koje prati KolicinaNaSkladistu. Zalihe se ažuriraju prema isporukama i potrošnji u proizvodima.
+Entitet Sirovina povezan je s entitetom ZalihaSirovine u vezi jedan naprema jedan – svaka sirovina ima stanje zalihe (količinu na skladištu), dok se zaliha odnosi samo na jednu sirovinu.
+
+Entitet Sirovina također je povezan s entitetom StavkaNabavneNarudzbe u vezi više naprema jedan – više stavki može uključivati istu sirovinu, dok se svaka stavka odnosi na jednu određenu sirovinu.
+
+Entitet StavkaNabavneNarudzbe povezan je s entitetom NabavnaNarudzba u vezi više naprema jedan – više stavki pripada jednoj nabavnoj narudžbi, dok se jedna stavka ne može dijeliti među više narudžbi.
+
+Entitet NabavnaNarudzba povezan je s entitetom Dobavljac u vezi više naprema jedan – više narudžbi može biti naručeno od istog dobavljača, dok se jedna narudžba upućuje jednom dobavljaču.
+
+Entitet Proizvod povezan je s entitetom Dobavljac i preko pomoćnog entiteta ProizvodDobavljac, koji omogućuje više naprema više vezu – jedan proizvod može imati više dobavljača, a jedan dobavljač može isporučivati više proizvoda. Ova veza sadrži i dodatne atribute kao što je RokIsporuke.
 
 ## Relacije, atributi i ograničenja
 
