@@ -90,11 +90,11 @@ Ograničenje NOT NULL označava da vrijednosti za atribute brojStola i kapacitet
 **Relacija narudzba**\
 Evidentira informacije o narudžbama koje kupci ostvaruju, sastoji se od sljedećih atributa:
 
-- **narudzbaID** – podatak tipa INTEGER, koji je **primarni ključ** unutar relacije
-- **datumVrijeme** – podatak tipa DATETIME, označava točno vrijeme narudžbe
-- **kupacID** – podatak tipa INTEGER, predstavlja **strani ključ** koji referencira kupca koji je napravio narudžbu
-- **stolID** – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
-- **zaposlenikID** – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
+- *narudzbaID* – podatak tipa INTEGER, koji je **primarni ključ** unutar relacije
+- *datumVrijeme* – podatak tipa DATETIME, označava točno vrijeme narudžbe
+- *kupacID* – podatak tipa INTEGER, predstavlja **strani ključ** koji referencira kupca koji je napravio narudžbu
+- *stolID* – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
+- *zaposlenikID* – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
 
 U ovoj relaciji nisu eksplicitno navedena ograničenja NOT NULL, ali se pretpostavlja da su kupacID, datumVrijeme i zaposlenikID važni za integritet podataka te bi u konačnoj verziji trebali imati dodatna ograničenja poput NOT NULL i FOREIGN KEY odnosa.
 
@@ -104,17 +104,17 @@ U ovoj relaciji nisu eksplicitno navedena ograničenja NOT NULL, ali se pretpost
 
 Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za određene stolove u kafiću. Svaka rezervacija uključuje informaciju o vremenu, broju osoba te statusu rezervacije. Relacija se sastoji od sljedećih atributa:
 
-*RezervacijaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i jedinstveno identificira svaku rezervaciju, ne smije biti NULL.
+- *RezervacijaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i jedinstveno identificira svaku rezervaciju, ne smije biti NULL.
 
-*KupacID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Kupac, te ne smije biti NULL.
+- *KupacID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Kupac, te ne smije biti NULL.
 
-*StolID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Stol, ne smije biti NULL.
+- *StolID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Stol, ne smije biti NULL.
 
-*DatumVrijeme* – podatak tipa DATETIME, koji označava točan datum i vrijeme kada je rezervacija zakazana, ne smije biti NULL.
+- *DatumVrijeme* – podatak tipa DATETIME, koji označava točan datum i vrijeme kada je rezervacija zakazana, ne smije biti NULL.
 
-*BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena, ne smije biti NULL.
+- *BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena, ne smije biti NULL.
 
-*Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”, ne smije biti NULL.
+- *Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”, ne smije biti NULL.
 
 
 
