@@ -29,17 +29,17 @@ Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se n
 ## Relacije, atributi i ograničenja
 
 
-Relacija **Kupac**\
-Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija Kupac sastoji se od sljedećih atributa:
+Relacija **kupac**\
+Evidentira podatke o kupcima. Relacija kupac se sastoji od sljedećih atributa:
 
-- *KupacID* – podatak tipa int, koji predstavlja primarni ključ unutar relacije. Jedinstveno identificira svakog kupca u bazi podataka.
-- *Ime* – podatak tipa varchar, maksimalne duljine 255 znakova. 
-- *Prezime* – podatak tipa varchar, maksimalne duljine 255 znakova. 
-- *Telefon* – podatak tipa varchar, maksimalne duljine 255 znakova. 
-- *Email* – podatak tipa varchar, maksimalne duljine 255 znakova. 
-- *StatusVjernosti* – podatak tipa varchar, maksimalne duljine 255 znakova. Označava razinu lojalnosti kupca (npr. “standardni”, “član”, “VIP”) te se može koristiti u svrhu nagrađivanja redovitih gostiju.
+- *kupacID* – podatak tipa INT, koji je primarni ključ unutar relacije
+- *ime* – podatak tipa VARCHAR(255), koji ne smije biti NULL
+- *prezime* – podatak tipa VARCHAR(255), koji ne smije biti NULL
+- *telefon* – podatak tipa VARCHAR(255)
+- *email* – podatak tipa VARCHAR(255), koji mora biti jedinstven (UNIQUE)
+- *statusVjernosti* – podatak tipa VARCHAR(255), označava status lojalnosti kupca (npr. standardni, zlatni, VIP)
 
-Svi atributi mogu sadržavati NULL vrijednosti osim primarnog ključa, a dodatna ograničenja (kao što su not null ili unique) mogu se dodati ovisno o potrebama daljnjeg razvoja baze i validacije podataka.
+Ograničenje NOT NULL označava da podaci ime i prezime moraju biti uneseni. Atribut email je dodatno ograničen kao jedinstven, čime se sprječava da više kupaca koristi istu e-mail adresu.
 
 ![Screenshot 2025-05-26 184714](https://github.com/user-attachments/assets/086bf875-16fa-44cc-a705-26f5cb7b3344)
 
