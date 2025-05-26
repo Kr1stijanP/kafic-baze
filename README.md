@@ -55,5 +55,8 @@ Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
 
 Ograničenje NOT NULL označava da podaci ime i prezime ne smiju biti null tipa podatka. Atribut email je dodatno ograničen kao jedinstven (UNIQUE). Atribut ulogaID može biti null ako zaposlenik nije dodijeljen nijednoj ulozi.
 
+![Screenshot 2025-05-26 184845](https://github.com/user-attachments/assets/4444456b-e53f-4486-9b9d-53b162e5e36b)
+
+
 
 
