@@ -32,7 +32,7 @@ Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se n
 Relacija **kupac**\
 Evidentira podatke o kupcima, sastoji od sljedećih atributa:
 
-- *kupacID* – podatak tipa INT, koji je primarni ključ unutar relacije
+- *kupacID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
 - *ime* – podatak tipa VARCHAR(255), koji ne smije biti NULL
 - *prezime* – podatak tipa VARCHAR(255), koji ne smije biti NULL
 - *telefon* – podatak tipa VARCHAR(255)
@@ -47,12 +47,12 @@ Ograničenje NOT NULL označava da podaci ime i prezime moraju biti uneseni. Atr
 Relacija **zaposlenik**\
 Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
 
-- *zaposlenikID* – podatak tipa integer, koji je primarni ključ unutar relacije
-- *ime* – podatak tipa varchar(255), koji ne smije biti null
-- *prezime* – podatak tipa varchar(255), koji ne smije biti null
-- *ulogaID* – podatak tipa integer, predstavlja strani ključ koji referencira relaciju uloga
-- *telefon* – podatak tipa varchar(255)
-- *email* – podatak tipa varchar(255), mora biti jedinstven
+- *zaposlenikID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
+- *ime* – podatak tipa VARCHAR(255), koji ne smije biti null
+- *prezime* – podatak tipa VARCHAR(255), koji ne smije biti null
+- *ulogaID* – podatak tipa INTEGER, predstavlja strani ključ koji referencira relaciju uloga
+- *telefon* – podatak tipa VARCHAR(255)
+- *email* – podatak tipa VARCHAR(255), mora biti jedinstven
 
 Ograničenje NOT NULL označava da podaci ime i prezime ne smiju biti null tipa podatka. Atribut email je dodatno ograničen kao jedinstven (UNIQUE). Atribut ulogaID može biti null ako zaposlenik nije dodijeljen nijednoj ulozi.
 
