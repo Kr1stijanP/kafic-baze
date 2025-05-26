@@ -28,4 +28,15 @@ Entitet **Sirovina** sadrži SirovinaID, Naziv i JedinicaMjere. Te sirovine se n
 
 ## Relacije, atributi i ograničenja
 
-Relacija **kupac**
+
+Relacija Kupac
+
+Prati osnovne, nepromjenjive podatke o kupcima koji posjećuju kafić. Relacija Kupac sastoji se od sljedećih atributa:
+
+KupacID – podatak tipa int, koji predstavlja primarni ključ unutar relacije. Jedinstveno identificira svakog kupca u bazi podataka.
+Ime – podatak tipa varchar, maksimalne duljine 255 znakova. Predstavlja osobno ime kupca.
+Prezime – podatak tipa varchar, maksimalne duljine 255 znakova. Predstavlja prezime kupca.
+Telefon – podatak tipa varchar, maksimalne duljine 255 znakova. Služi za pohranu telefonskog broja kupca.
+Email – podatak tipa varchar, maksimalne duljine 255 znakova. Koristi se za kontakt podatke te može biti koristan pri rezervacijama ili programu vjernosti.
+StatusVjernosti – podatak tipa varchar, maksimalne duljine 255 znakova. Označava razinu lojalnosti kupca (npr. “standardni”, “član”, “VIP”) te se može koristiti u svrhu nagrađivanja redovitih gostiju.
+Svi atributi mogu sadržavati null vrijednosti osim primarnog ključa, a dodatna ograničenja (kao što su not null ili unique) mogu se dodati ovisno o potrebama daljnjeg razvoja baze i validacije podataka.
