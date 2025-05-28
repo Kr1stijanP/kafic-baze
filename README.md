@@ -49,7 +49,8 @@ Evidentira podatke o kupcima, sastoji od sljedećih atributa:
 
 Ograničenje NOT NULL označava da podaci ime i prezime moraju biti uneseni. Atribut email je dodatno ograničen kao jedinstven, čime se sprječava da više kupaca koristi istu e-mail adresu.
 
-![Screenshot 2025-05-26 184714](https://github.com/user-attachments/assets/086bf875-16fa-44cc-a705-26f5cb7b3344)
+<img width="255" alt="image" src="https://github.com/user-attachments/assets/d2121af8-fcb0-4efd-aa2e-4bdee13d38e4" />
+
 
 
 Relacija **zaposlenik**\
