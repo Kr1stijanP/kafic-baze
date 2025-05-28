@@ -38,16 +38,15 @@ Entitet **Proizvod** povezan je s entitetom **Dobavljac** preko pomoćnog entite
 
 
 Relacija **kupac**\
-Evidentira podatke o kupcima, sastoji od sljedećih atributa:
+Pohranjuje osnovne podatke o kupcima i njihov status lojalnosti, a sastoji se od sljedećih atributa:
 
-- *kupacID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
-- *ime* – podatak tipa VARCHAR(255), koji ne smije biti NULL
-- *prezime* – podatak tipa VARCHAR(255), koji ne smije biti NULL
+- *kupacID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije te obavezno mora imati vrijednost zbog PRIMARY KEY ograničenja
+- *ime* – podatak tipa VARCHAR(255) 
+- *prezime* – podatak tipa VARCHAR(255)
 - *telefon* – podatak tipa VARCHAR(255)
-- *email* – podatak tipa VARCHAR(255), koji mora biti jedinstven (UNIQUE)
+- *email* – podatak tipa VARCHAR(255),
 - *statusVjernosti* – podatak tipa VARCHAR(255), označava status lojalnosti kupca (npr. standardni, zlatni, VIP)
 
-Ograničenje NOT NULL označava da podaci ime i prezime moraju biti uneseni. Atribut email je dodatno ograničen kao jedinstven, čime se sprječava da više kupaca koristi istu e-mail adresu.
 
 <img width="255" alt="image" src="https://github.com/user-attachments/assets/d2121af8-fcb0-4efd-aa2e-4bdee13d38e4" />
 
@@ -56,26 +55,26 @@ Ograničenje NOT NULL označava da podaci ime i prezime moraju biti uneseni. Atr
 Relacija **zaposlenik**\
 Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
 
-- *zaposlenikID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
-- *ime* – podatak tipa VARCHAR(255), koji ne smije biti null
-- *prezime* – podatak tipa VARCHAR(255), koji ne smije biti null
+- *zaposlenikID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)
+- *ime* – podatak tipa VARCHAR(255)
+- *prezime* – podatak tipa VARCHAR(255)
 - *ulogaID* – podatak tipa INTEGER, predstavlja strani ključ koji referencira relaciju uloga
 - *telefon* – podatak tipa VARCHAR(255)
-- *email* – podatak tipa VARCHAR(255), mora biti jedinstven
+- *email* – podatak tipa VARCHAR(255)
 
-Ograničenje NOT NULL označava da podaci ime i prezime ne smiju biti null tipa podatka. Atribut email je dodatno ograničen kao jedinstven (UNIQUE). Atribut ulogaID može biti null ako zaposlenik nije dodijeljen nijednoj ulozi.
 
-![Screenshot 2025-05-26 184845](https://github.com/user-attachments/assets/4444456b-e53f-4486-9b9d-53b162e5e36b)
+<img width="206" alt="image" src="https://github.com/user-attachments/assets/d4c695a5-f55e-45d5-b573-e5a1f4b7d4a8" />
+
 
 Relacija **uloga**\
 Evidentira vrste uloga koje zaposlenici mogu imati. Relacija uloga se sastoji od sljedećih atributa:
 
-- *ulogaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
-- *nazivUloge* – podatak tipa VARCHAR(255), koji ne smije biti NOT NULL
+- *ulogaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)
+- *nazivUloge* – podatak tipa VARCHAR(255)
 
-Ograničenje NOT NULL označava da vrijednost za atribut nazivUloge mora biti unesena – npr. konobar, kuhar, menadžer itd.
 
-![Screenshot 2025-05-26 190336](https://github.com/user-attachments/assets/8060f073-e63a-4022-8199-d8365452edd0)
+<img width="172" alt="image" src="https://github.com/user-attachments/assets/2fc2edd6-5d70-464e-aa35-db0f2226ee7e" />
+
 
 **Relacija stol**\
 Evidentira informacije o stolovima u objektu, sastoji od sljedećih atributa:  
