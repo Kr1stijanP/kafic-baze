@@ -234,5 +234,5 @@ Relacije:
 
 **_Alter Table Zaposlenik_**
 
-<pre>``` ALTER TABLE `Zaposlenik` ADD FOREIGN KEY (`UlogaID`) REFERENCES `Uloga` (`UlogaID`); ```</pre>
+<pre>```sql ALTER TABLE `Zaposlenik` ADD FOREIGN KEY (`UlogaID`) REFERENCES `Uloga` (`UlogaID`); ```</pre>
 
