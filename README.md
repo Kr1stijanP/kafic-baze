@@ -50,8 +50,6 @@ Služi za pohranu podataka o kupcima kafića. Svaki kupac ima jedinstveni identi
 
 <img width="255" alt="image" src="https://github.com/user-attachments/assets/d2121af8-fcb0-4efd-aa2e-4bdee13d38e4" />
 
-
-
 Relacija **zaposlenik**\
 Sadrži informacije o zaposlenicima kafića. Svaki zaposlenik pripada određenoj ulozi i može biti zadužen za narudžbe ili smjene. Sastoji od sljedećih atributa:
 
@@ -62,9 +60,7 @@ Sadrži informacije o zaposlenicima kafića. Svaki zaposlenik pripada određenoj
 - *telefon* – podatak tipa VARCHAR(255), kontakt
 - *email* – podatak tipa VARCHAR(255), kontakt 
 
-
 <img width="206" alt="image" src="https://github.com/user-attachments/assets/d4c695a5-f55e-45d5-b573-e5a1f4b7d4a8" />
-
 
 Relacija **uloga**\
 Evidentira vrste uloga koje zaposlenici mogu imati. Relacija uloga se sastoji od sljedećih atributa:
@@ -72,9 +68,7 @@ Evidentira vrste uloga koje zaposlenici mogu imati. Relacija uloga se sastoji od
 - *ulogaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)
 - *nazivUloge* – podatak tipa VARCHAR(255)
 
-
 <img width="172" alt="image" src="https://github.com/user-attachments/assets/2fc2edd6-5d70-464e-aa35-db0f2226ee7e" />
-
 
 **Relacija stol**\
 Relacija Stol koristi se za pohranu podataka o fizičkim stolovima u kafiću koji su dostupni za rezervaciju i posluživanje narudžbi. Pomaže u organizaciji sjedećih mjesta i upravljanju kapacitetima prostora.
@@ -83,9 +77,7 @@ Relacija Stol koristi se za pohranu podataka o fizičkim stolovima u kafiću koj
 - *brojStola* – podatak tipa INTEGER, oznaka stola
 - *kapacitet* – podatak tipa INTEGER, maksimalan broj osoba koje mogu sjesti za stol.
 
-
 <img width="173" alt="image" src="https://github.com/user-attachments/assets/0499c256-8096-42a3-bfdf-007be3700498" />
-
 
 **Relacija narudzba**\
 Relacija Narudzba evidentira sve narudžbe koje su kupci napravili, uključujući informacije o vremenu narudžbe, zaposleniku koji je obradio narudžbu te stolu za kojim je narudžba zabilježena.
@@ -97,7 +89,6 @@ Relacija Narudzba evidentira sve narudžbe koje su kupci napravili, uključujuć
 - *zaposlenikID* – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
 
 <img width="196" alt="image" src="https://github.com/user-attachments/assets/dc5b4609-3c12-4e5c-b975-a63f3125f29d" />
-
 
 **Relacija rezervacija**\
 Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za određene stolove u kafiću. Svaka rezervacija uključuje informaciju o vremenu, broju osoba te statusu rezervacije. 
@@ -111,22 +102,6 @@ Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za odre�
 
 <img width="209" alt="image" src="https://github.com/user-attachments/assets/911358ea-0c1d-4366-b1ce-f4144d464e2a" />
 
-**Relacija Proizvod**\
-Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi o pićima ili drugim uslugama. Svaki proizvod pripada određenoj kategoriji i ima definiranu cijenu i opis.
-
- - *ProizvodID int PRIMARY KEY* - Primarni ključ, jedinstveni identifikator proizvoda, podatak tipa INTEGER
-  - *Naziv varchar(255)* -  Ime proizvoda , podatak tipa VARCHAR(255)
-  - *Opis* - Detaljniji opis proizvoda, podatak tipa TEXT
-  - *Cijena* - Trenutna jedinična cijena proizvoda, podatak tipa DECIMAL
-  - *KategorijaID* - Strani ključ, povezuje proizvod s njegovom kategorijom (npr. piće, hrana), podatak tipa INTEGER
-
-Relacije:
-- Veza s KategorijaProizvoda: svaki proizvod pripada jednoj kategoriji.
-- Veza s StavkaNarudzbe: proizvod može biti dio više narudžbi.
-- Veza s ProizvodDobavljac: omogućuje praćenje dobavljača za svaki proizvod.
-
-<img width="197" alt="image" src="https://github.com/user-attachments/assets/3ba03331-8c14-46b8-a20d-6688471e4d68" />
-
 **Relacija StakvaNarudzbe**\
 Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proizvoda koji su naručeni. Svaka narudžba može sadržavati više stavki, a svaka stavka odnosi se na određeni proizvod s određenom količinom i cijenom.
 
@@ -137,7 +112,6 @@ Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proiz
   - *PRIMARY KEY (NarudzbaID, ProizvodID)* - NarudzbaID je strani ključ prema tablici Narudzba. ProizvodID je strani ključ prema tablici Proizvod. Jedna narudžba može sadržavati više   stavki, a jedan proizvod može biti dio više narudžbi.
   
 <img width="238" alt="image" src="https://github.com/user-attachments/assets/168ce966-159a-4dda-828e-8038db9df5d4" />
-
 
 **Relacija Proizvod**\
 Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi o pićima ili drugim uslugama. Svaki proizvod pripada određenoj kategoriji i ima definiranu cijenu i opis.
