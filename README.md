@@ -229,3 +229,5 @@ Relacije:
 - StavkaNabavneNarudzbe — Sirovina: Tip veze: više na jedan. Više stavki može sadržavati istu sirovinu, jer ista sirovina može biti naručena u različitim narudžbama. Veza se ostvaruje preko: stranog ključa SirovinaID.
 
 <img width="281" alt="image" src="https://github.com/user-attachments/assets/a8e49f80-e032-498a-aaaf-cc440677c5f2" />
+
+## Alter table ograničenja
