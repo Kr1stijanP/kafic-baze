@@ -77,42 +77,52 @@ Evidentira vrste uloga koje zaposlenici mogu imati. Relacija uloga se sastoji od
 
 
 **Relacija stol**\
-Evidentira informacije o stolovima u objektu, sastoji od sljedećih atributa:  
+Relacija Stol koristi se za pohranu podataka o fizičkim stolovima u kafiću koji su dostupni za rezervaciju i posluživanje narudžbi. Pomaže u organizaciji sjedećih mjesta i upravljanju kapacitetima prostora.
 
-- *stolID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije  
-- *brojStola* – podatak tipa INTEGER, koji ne smije biti NOT NULL  
-- *kapacitet* – podatak tipa INTEGER, koji ne smije biti NOT NULL
+- *stolID* – podatak tipa INTEGER, primarni ključ jedinstveno identificira svaki stol
+- *brojStola* – podatak tipa INTEGER, oznaka stola
+- *kapacitet* – podatak tipa INTEGER, maksimalan broj osoba koje mogu sjesti za stol.
 
-Ograničenje NOT NULL označava da vrijednosti za atribute brojStola i kapacitet moraju biti unesene. Na taj način se osigurava da svaki stol ima dodijeljen broj i broj osoba koje može primiti.
 
-![Screenshot 2025-05-26 195426](https://github.com/user-attachments/assets/22701f11-b191-41e8-a60e-5a7dd9ba70cc)
+<img width="173" alt="image" src="https://github.com/user-attachments/assets/0499c256-8096-42a3-bfdf-007be3700498" />
+
 
 **Relacija narudzba**\
-Evidentira informacije o narudžbama koje kupci ostvaruju, sastoji se od sljedećih atributa:
+Relacija Narudzba evidentira sve narudžbe koje su kupci napravili, uključujući informacije o vremenu narudžbe, zaposleniku koji je obradio narudžbu te stolu za kojim je narudžba zabilježena.
 
-- *narudzbaID* – podatak tipa INTEGER, koji je **primarni ključ** unutar relacije
+- *narudzbaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
 - *datumVrijeme* – podatak tipa DATETIME, označava točno vrijeme narudžbe
 - *kupacID* – podatak tipa INTEGER, predstavlja **strani ključ** koji referencira kupca koji je napravio narudžbu
 - *stolID* – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
 - *zaposlenikID* – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
 
-U ovoj relaciji nisu eksplicitno navedena ograničenja NOT NULL, ali se pretpostavlja da su kupacID, datumVrijeme i zaposlenikID važni za integritet podataka te bi u konačnoj verziji trebali imati dodatna ograničenja poput NOT NULL i FOREIGN KEY odnosa.
+<img width="209" alt="image" src="https://github.com/user-attachments/assets/911358ea-0c1d-4366-b1ce-f4144d464e2a" />
 
-![Screenshot 2025-05-26 203021](https://github.com/user-attachments/assets/3286d3ae-a43c-446e-af97-78695090719e)
+
 
 **Relacija rezervacija**\
-Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za određene stolove u kafiću. Svaka rezervacija uključuje informaciju o vremenu, broju osoba te statusu rezervacije. Relacija se sastoji od sljedećih atributa:
+Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za određene stolove u kafiću. Svaka rezervacija uključuje informaciju o vremenu, broju osoba te statusu rezervacije. 
 
-- *RezervacijaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i jedinstveno identificira svaku rezervaciju, ne smije biti NULL.
-- *KupacID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Kupac, te ne smije biti NULL.
-- *StolID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Stol, ne smije biti NULL.
-- *DatumVrijeme* – podatak tipa DATETIME, koji označava točan datum i vrijeme kada je rezervacija zakazana, ne smije biti NULL.
-- *BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena, ne smije biti NULL.
-- *Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”, ne smije biti NULL.
+- *RezervacijaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i jedinstveno identificira svaku rezervaciju
+- *KupacID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Kupac
+- *StolID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Stol
+- *DatumVrijeme* – podatak tipa DATETIME, koji označava točan datum i vrijeme kada je rezervacija zakazana
+- *BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena
+- *Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”
 
- ![Screenshot 2025-05-26 204903](https://github.com/user-attachments/assets/b5e7c806-3ab3-4371-9619-e2f8b93381d8)
+<img width="182" alt="image" src="https://github.com/user-attachments/assets/1ba958d2-e7f5-46fe-9496-03631c5dcd2f" />
 
 
+**Relacija StakvaNarudzbe**\
+Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proizvoda koji su naručeni. Svaka narudžba može sadržavati više stavki, a svaka stavka odnosi se na određeni proizvod s određenom količinom i cijenom.
+
+  - *NarudzbaID* - složeni primarni ključ (zajedno s ProizvodID), označava kojoj narudžbi stavka pripada, podatak tipa INTEGER
+  - *ProizvodID* -  složeni primarni ključ  označava koji je proizvod naručen, podatak tipa INTEGER
+  - *Kolicina* - količina naručenog proizvoda, podatak tipa INTEGER
+  - *JedinicnaCijena* - cijena po jedinici proizvoda u trenutku narudžbe (omogućuje praćenje povijesnih cijena), podatak tipa INTEGER
+  - *PRIMARY KEY (NarudzbaID, ProizvodID)* - NarudzbaID je strani ključ prema tablici Narudzba. ProizvodID je strani ključ prema tablici Proizvod. Jedna narudžba može sadržavati više   stavki, a jedan proizvod može biti dio više narudžbi.
+  
+<img width="238" alt="image" src="https://github.com/user-attachments/assets/168ce966-159a-4dda-828e-8038db9df5d4" />
 
 
 
