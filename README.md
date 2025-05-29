@@ -267,3 +267,32 @@ Relacije:
 
   <img width="221" alt="image" src="https://github.com/user-attachments/assets/7e85c5ad-1906-4810-bb21-e985c7852155" />
 
+**Relacija Dobavljac**\
+Relacija Dobavljac pohranjuje informacije o dobavljačima proizvoda i sirovina. Omogućuje praćenje osnovnih podataka o svakom dobavljaču: njihov naziv, telefonski broj i email adresu.
+
+- *DobavljacID* – Primarni ključ, jedinstveni identifikator dobavljača, podatak tipa INTEGER.
+- *Naziv* – Naziv tvrtke dobavljača, podatak tipa VARCHAR(255).
+- *Telefon* – Broj telefona dobavljača, podatak tipa VARCHAR(255).
+- *Email* – Email adresa dobavljača, podatak tipa VARCHAR(255).
+
+Relacije:
+
+- Dobavljac — ProizvodDobavljac: Veza jedan na više – jedan dobavljač može isporučivati više proizvoda. Povezivanje se vrši putem stranog ključa DobavljacID.
+- Dobavljac — NabavnaNarudzba: Veza jedan na više – jedan dobavljač može biti naveden u više nabavnih narudžbi. Povezivanje se vrši putem stranog ključa DobavljacID.
+
+![image](https://github.com/user-attachments/assets/adacf9b4-28e2-415b-af55-f3fb5ce04554)
+
+**Relacija ProizvodDobavljac**\
+Služi za povezivanje proizvoda s dobavljačima i za praćenje roka isporuke proizvoda.
+
+- *ProizvodID* – Dio primarnog ključa, označava proizvod koji se isporučuje, podatak tipa INTEGER.
+- *DobavljacID* – Dio primarnog ključa, označava dobavljača proizvoda, podatak tipa INTEGER.
+- *RokIsporuke* – Datum i vrijeme kada je dogovorena isporuka proizvoda, podatak tipa DATETIME.
+
+Relacije:
+
+- ProizvodDobavljac — Proizvod: Veza više na jedan – više zapisa o dobavljačima može biti vezano za isti proizvod. Povezivanje se vrši putem stranog ključa ProizvodID.
+- ProizvodDobavljac — Dobavljac: Veza više na jedan – više zapisa o proizvodima može biti vezano za istog dobavljača. Povezivanje se vrši putem stranog ključa DobavljacID.
+
+![image](https://github.com/user-attachments/assets/9911b9c7-87d2-447a-9543-f3a266aa90db)
+
