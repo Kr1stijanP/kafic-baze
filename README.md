@@ -123,7 +123,6 @@ Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proiz
   
 <img width="238" alt="image" src="https://github.com/user-attachments/assets/168ce966-159a-4dda-828e-8038db9df5d4" />
 
-
 **Relacija Proizvod**\
 Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi o pićima ili drugim uslugama. Svaki proizvod pripada određenoj kategoriji i ima definiranu cijenu i opis.
 
@@ -225,7 +224,6 @@ Predstavlja vezu između proizvoda i dobavljača. Koristi se za praćenje koji d
   - *RokIsporuke* - Datum ili vremenski rok unutar kojeg se očekuje isporuka proizvoda, podatak tipa DATETIME
   - *PRIMARY KEY (ProizvodID, DobavljacID)* - Primarni ključ predstavlja složeni ključ koji jedinstveno identificira svaki zapis kao kombinaciju određenog proizvoda i dobavljača. Na taj način se sprječava ponavljanje istih parova i osigurava ispravnost veze više na više između proizvoda i dobavljača.
 
-
 <img width="251" alt="image" src="https://github.com/user-attachments/assets/db862383-40ba-4c99-a58f-3fd280e12e27" />
 
 **Relacija Sirovina**\
@@ -267,51 +265,7 @@ Relacije:
 
   <img width="221" alt="image" src="https://github.com/user-attachments/assets/7e85c5ad-1906-4810-bb21-e985c7852155" />
 
-**Relacija Dobavljac**\
-Relacija Dobavljac pohranjuje informacije o dobavljačima proizvoda i sirovina. Omogućuje praćenje osnovnih podataka o svakom dobavljaču: njihov naziv, telefonski broj i email adresu.
-
-- *DobavljacID* – Primarni ključ, jedinstveni identifikator dobavljača, podatak tipa INTEGER.
-- *Naziv* – Naziv tvrtke dobavljača, podatak tipa VARCHAR(255).
-- *Telefon* – Broj telefona dobavljača, podatak tipa VARCHAR(255).
-- *Email* – Email adresa dobavljača, podatak tipa VARCHAR(255).
-
-Relacije:
-
-- Dobavljac — ProizvodDobavljac: Veza jedan na više – jedan dobavljač može isporučivati više proizvoda. Povezivanje se vrši putem stranog ključa DobavljacID.
-- Dobavljac — NabavnaNarudzba: Veza jedan na više – jedan dobavljač može biti naveden u više nabavnih narudžbi. Povezivanje se vrši putem stranog ključa DobavljacID.
-
-![image](https://github.com/user-attachments/assets/adacf9b4-28e2-415b-af55-f3fb5ce04554)
-
-**Relacija ProizvodDobavljac**\
-Služi za povezivanje proizvoda s dobavljačima i za praćenje roka isporuke proizvoda.
-
-- *ProizvodID* – Dio primarnog ključa, označava proizvod koji se isporučuje, podatak tipa INTEGER.
-- *DobavljacID* – Dio primarnog ključa, označava dobavljača proizvoda, podatak tipa INTEGER.
-- *RokIsporuke* – Datum i vrijeme kada je dogovorena isporuka proizvoda, podatak tipa DATETIME.
-
-Relacije:
-
-- ProizvodDobavljac — Proizvod: Veza više na jedan – više zapisa o dobavljačima može biti vezano za isti proizvod. Povezivanje se vrši putem stranog ključa ProizvodID.
-- ProizvodDobavljac — Dobavljac: Veza više na jedan – više zapisa o proizvodima može biti vezano za istog dobavljača. Povezivanje se vrši putem stranog ključa DobavljacID.
-
-![image](https://github.com/user-attachments/assets/9911b9c7-87d2-447a-9543-f3a266aa90db)
-
-**Relacija NabavnaNarudzba**\
-Evidentira sve narudžbe sirovina koje se šalju dobavljačima. Omogućuje praćenje datuma narudžbe i očekivanog dolaska robe.
-
-- *NabavnaNarudzbaID* – Primarni ključ, podatak tipa INTEGER
-- *DobavljacID* – Strani ključ, označava kojem dobavljaču je narudžba upućena, podatak tipa INTEGER
-- *DatumNarudzbe* – Datum kada je narudžba napravljena, podatak tipa DATE
-- *OcekivaniDatum* – Datum kada se očekuje isporuka, podatak tipa DATE
-
-Relacije:
-
-- NabavnaNarudzba — Dobavljac: Veza više na jedan – više narudžbi može biti upućeno istom dobavljaču. Povezivanje se vrši putem stranog ključa DobavljacID
-- NabavnaNarudzba — StavkaNabavneNarudzbe: Veza jedan na više – jedna nabavna narudžba može sadržavati više različitih sirovina. Povezivanje se vrši preko NabavnaNarudzbaID.
-
-  <img width="221" alt="image" src="https://github.com/user-attachments/assets/7e85c5ad-1906-4810-bb21-e985c7852155" />
-
-  **Relacija StavkaNabavneNarudzbe**\
+**Relacija StavkaNabavneNarudzbe**\
 Povezuje svaku narudžbu s konkretnim sirovinama koje su naručene i njihovim količinama.
 
 - *NabavnaNarudzbaID* - Predstavlja identifikator nabavne narudžbe, podatak tipa INTEGER. Ova vrijednost određuje kojoj narudžbi pripada pojedinačna stavka.
@@ -323,4 +277,4 @@ Relacije:
 - StavkaNabavneNarudzbe — NabavnaNarudzba: Tip veze: više na jedan. Više stavki može pripadati istoj narudžbi. Veza se ostvaruje preko: stranog ključa NabavnaNarudzbaID.
 - StavkaNabavneNarudzbe — Sirovina: Tip veze: više na jedan. Više stavki može sadržavati istu sirovinu, jer ista sirovina može biti naručena u različitim narudžbama. Veza se ostvaruje preko: stranog ključa SirovinaID.
 
-  <img width="281" alt="image" src="https://github.com/user-attachments/assets/a8e49f80-e032-498a-aaaf-cc440677c5f2" />
+<img width="281" alt="image" src="https://github.com/user-attachments/assets/a8e49f80-e032-498a-aaaf-cc440677c5f2" />
