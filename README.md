@@ -231,3 +231,8 @@ Relacije:
 <img width="281" alt="image" src="https://github.com/user-attachments/assets/a8e49f80-e032-498a-aaaf-cc440677c5f2" />
 
 ## Alter table ograničenja
+
+**_Alter Table Zaposlenik_**
+
+``` ALTER TABLE `Zaposlenik` ADD FOREIGN KEY (`UlogaID`) REFERENCES `Uloga` (`UlogaID`); ```
+
