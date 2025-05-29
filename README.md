@@ -151,6 +151,57 @@ Ova relacija omogućuje grupiranje proizvoda po vrstama, a koristi se kao strana
 ![image](https://github.com/user-attachments/assets/470b89cd-b21e-4cdb-8758-8ca553583990)
 
 
+**Relacija StakvaNarudzbe**\
+Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proizvoda koji su naručeni. Svaka narudžba može sadržavati više stavki, a svaka stavka odnosi se na određeni proizvod s određenom količinom i cijenom.
 
+  - *NarudzbaID* - složeni primarni ključ (zajedno s ProizvodID), označava kojoj narudžbi stavka pripada, podatak tipa INTEGER
+  - *ProizvodID* -  složeni primarni ključ  označava koji je proizvod naručen, podatak tipa INTEGER
+  - *Kolicina* - količina naručenog proizvoda, podatak tipa INTEGER
+  - *JedinicnaCijena* - cijena po jedinici proizvoda u trenutku narudžbe (omogućuje praćenje povijesnih cijena), podatak tipa DECIMAL
+  - *PRIMARY KEY (NarudzbaID, ProizvodID)* - NarudzbaID je strani ključ prema tablici Narudzba. ProizvodID je strani ključ prema tablici Proizvod. Jedna narudžba može sadržavati više   stavki, a jedan proizvod može biti dio više narudžbi.
+  
+<img width="238" alt="image" src="https://github.com/user-attachments/assets/168ce966-159a-4dda-828e-8038db9df5d4" />
+
+
+**Relacija Proizvod**\
+Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi o pićima ili drugim uslugama. Svaki proizvod pripada određenoj kategoriji i ima definiranu cijenu i opis.
+
+ - *ProizvodID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator proizvoda, podatak tipa INTEGER
+  - *Naziv * -  Ime proizvoda , podatak tipa VARCHAR(255)
+  - *Opis* - Detaljniji opis proizvoda, podatak tipa TEXT
+  - *Cijena* - Trenutna jedinična cijena proizvoda, podatak tipa DECIMAL
+  - *KategorijaID* - Strani ključ, povezuje proizvod s njegovom kategorijom (npr. piće, hrana), podatak tipa INTEGER
+
+Relacije:
+- Veza s KategorijaProizvoda: svaki proizvod pripada jednoj kategoriji.
+- Veza s StavkaNarudzbe: proizvod može biti dio više narudžbi.
+- Veza s ProizvodDobavljac: omogućuje praćenje dobavljača za svaki proizvod.
+
+<img width="197" alt="image" src="https://github.com/user-attachments/assets/3ba03331-8c14-46b8-a20d-6688471e4d68" />
+
+**Relacija KategorijaProizvoda**\
+Relacija KategorijaProizvoda služi za klasifikaciju proizvoda. Omogućuje lakše upravljanje i filtriranje proizvoda prema vrsti, što olakšava narudžbu, analizu prodaje i ažuriranje cjenika.
+
+- *KategorijaID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator kategorije proizvoda, podatak tipa INTEGER
+- *NazivKategorije varchar(255)* - Tekstualni naziv kategorije (npr. "bezalkoholna pića"), podatak tipa VARCHAR(255)
+  
+- *Veza s relacijom Proizvod - Jedna kategorija može obuhvaćati više proizvoda, dok svaki proizvod pripada točno jednoj kategoriji.
+
+<img width="211" alt="image" src="https://github.com/user-attachments/assets/6f9d8067-222a-47c1-95b8-723c5112c0d7" />
+
+**Relacija Placanje**\
+Relacija Placanje pohranjuje informacije o izvršenim plaćanjima za narudžbe. Omogućuje praćenje ukupnog iznosa naplate, metode plaćanja i vremena transakcije.
+
+  - *PlacanjeID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator plaćanja, podatak tipa INTEGER
+  - *NarudzbaID* - Strani ključ, označava narudžbu na koju se plaćanje odnosi, podatak tipa INTEGER
+  - *Iznos* - Ukupni iznos plaćen za narudžbu, podatak tipa DECIMAL
+  - *NacinPlacanja* - Tekstualna oznaka načina plaćanja (npr. gotovina, kartica) podatak tipa VARCHAR(255),
+  - *DatumVrijeme* - Datum i vrijeme kad je plaćanje izvršeno, podatak tipa DATETIME
+
+  - Relacije:
+-*Veza 1:1 s tablicom Narudzba – svaka narudžba može imati jedno plaćanje*
+-*Omogućuje analizu prodaje i financijskog poslovanja-*
+
+<img width="182" alt="image" src="https://github.com/user-attachments/assets/c5d65043-de19-40ac-b97d-c9a22b4a8d61" />
 
 
