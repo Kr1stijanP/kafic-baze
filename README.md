@@ -296,3 +296,31 @@ Relacije:
 
 ![image](https://github.com/user-attachments/assets/9911b9c7-87d2-447a-9543-f3a266aa90db)
 
+**Relacija NabavnaNarudzba**\
+Evidentira sve narudžbe sirovina koje se šalju dobavljačima. Omogućuje praćenje datuma narudžbe i očekivanog dolaska robe.
+
+- *NabavnaNarudzbaID* – Primarni ključ, podatak tipa INTEGER
+- *DobavljacID* – Strani ključ, označava kojem dobavljaču je narudžba upućena, podatak tipa INTEGER
+- *DatumNarudzbe* – Datum kada je narudžba napravljena, podatak tipa DATE
+- *OcekivaniDatum* – Datum kada se očekuje isporuka, podatak tipa DATE
+
+Relacije:
+
+- NabavnaNarudzba — Dobavljac: Veza više na jedan – više narudžbi može biti upućeno istom dobavljaču. Povezivanje se vrši putem stranog ključa DobavljacID
+- NabavnaNarudzba — StavkaNabavneNarudzbe: Veza jedan na više – jedna nabavna narudžba može sadržavati više različitih sirovina. Povezivanje se vrši preko NabavnaNarudzbaID.
+
+  <img width="221" alt="image" src="https://github.com/user-attachments/assets/7e85c5ad-1906-4810-bb21-e985c7852155" />
+
+  **Relacija StavkaNabavneNarudzbe**\
+Povezuje svaku narudžbu s konkretnim sirovinama koje su naručene i njihovim količinama.
+
+- *NabavnaNarudzbaID* - Predstavlja identifikator nabavne narudžbe, podatak tipa INTEGER. Ova vrijednost određuje kojoj narudžbi pripada pojedinačna stavka.
+- *SirovinaID* – Složeni primarni ključ, podatak tipa INTEGER. Označava točno koju sirovinu sadrži ta stavka unutar određene narudžbe.
+- *Kolicina* – Količina naručene sirovine, podatak tipa DECIMAL. 
+- *PRIMARY KEY (NabavnaNarudzbaID, SirovinaID)* - Složeni primarni ključ. Jedinstveno identificira svaki red u tablici kombinacijom NabavnaNarudzbaID i SirovinaID.  Sprječava da ista sirovina bude više puta unesena unutar iste narudžbe.
+  
+Relacije:
+- StavkaNabavneNarudzbe — NabavnaNarudzba: Tip veze: više na jedan. Više stavki može pripadati istoj narudžbi. Veza se ostvaruje preko: stranog ključa NabavnaNarudzbaID.
+- StavkaNabavneNarudzbe — Sirovina: Tip veze: više na jedan. Više stavki može sadržavati istu sirovinu, jer ista sirovina može biti naručena u različitim narudžbama. Veza se ostvaruje preko: stranog ključa SirovinaID.
+
+  <img width="281" alt="image" src="https://github.com/user-attachments/assets/a8e49f80-e032-498a-aaaf-cc440677c5f2" />
