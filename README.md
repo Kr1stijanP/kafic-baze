@@ -237,3 +237,9 @@ Relacije:
 ALTER TABLE `Zaposlenik` ADD FOREIGN KEY (`UlogaID`) REFERENCES `Uloga` (`UlogaID`);
 ```
 
+**Alter Table Rezervacija**
+```sql
+LTER TABLE `Rezervacija` ADD FOREIGN KEY (`KupacID`) REFERENCES `Kupac` (`KupacID`);
+ALTER TABLE `Rezervacija` ADD FOREIGN KEY (`StolID`) REFERENCES `Stol` (`StolID`);
+```
+
