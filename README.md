@@ -96,7 +96,7 @@ Relacija Narudzba evidentira sve narudžbe koje su kupci napravili, uključujuć
 - *stolID* – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
 - *zaposlenikID* – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
 
-<img width="209" alt="image" src="https://github.com/user-attachments/assets/911358ea-0c1d-4366-b1ce-f4144d464e2a" />
+
 
 
 
@@ -110,7 +110,7 @@ Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za odre�
 - *BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena
 - *Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”
 
-<img width="182" alt="image" src="https://github.com/user-attachments/assets/1ba958d2-e7f5-46fe-9496-03631c5dcd2f" />
+<img width="209" alt="image" src="https://github.com/user-attachments/assets/911358ea-0c1d-4366-b1ce-f4144d464e2a" />
 
 
 **Relacija StakvaNarudzbe**\
