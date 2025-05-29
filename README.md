@@ -111,18 +111,6 @@ Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za odre�
 
 <img width="209" alt="image" src="https://github.com/user-attachments/assets/911358ea-0c1d-4366-b1ce-f4144d464e2a" />
 
-
-**Relacija StakvaNarudzbe**\
-Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proizvoda koji su naručeni. Svaka narudžba može sadržavati više stavki, a svaka stavka odnosi se na određeni proizvod s određenom količinom i cijenom.
-
-  - *NarudzbaID* - složeni primarni ključ (zajedno s ProizvodID), označava kojoj narudžbi stavka pripada, podatak tipa INTEGER
-  - *ProizvodID* -  složeni primarni ključ  označava koji je proizvod naručen, podatak tipa INTEGER
-  - *Kolicina* - količina naručenog proizvoda, podatak tipa INTEGER
-  - *JedinicnaCijena* - cijena po jedinici proizvoda u trenutku narudžbe (omogućuje praćenje povijesnih cijena), podatak tipa DECIMAL
-  - *PRIMARY KEY (NarudzbaID, ProizvodID)* - NarudzbaID je strani ključ prema tablici Narudzba. ProizvodID je strani ključ prema tablici Proizvod. Jedna narudžba može sadržavati više   stavki, a jedan proizvod može biti dio više narudžbi.
-  
-<img width="238" alt="image" src="https://github.com/user-attachments/assets/168ce966-159a-4dda-828e-8038db9df5d4" />
-
 **Relacija Proizvod**\
 Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi o pićima ili drugim uslugama. Svaki proizvod pripada određenoj kategoriji i ima definiranu cijenu i opis.
 
