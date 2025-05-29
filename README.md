@@ -273,7 +273,80 @@ Svaka stavka u narudžbi mora pripadati postojećoj narudžbi i odnositi se na s
 
 - *NarudzbaID – stavka mora biti dio postojeće narudžbe.*
 - *ProizvodID – stavka mora referencirati stvarni proizvod iz ponude.*
+  
 ```sql
 ALTER TABLE StavkaNarudzbe ADD FOREIGN KEY (NarudzbaID) REFERENCES Narudzba (NarudzbaID);
 ALTER TABLE StavkaNarudzbe ADD FOREIGN KEY (ProizvodID) REFERENCES Proizvod (ProizvodID);
+```
+
+**Alter table Proizvod**
+
+Svaki proizvod mora pripadati točno jednoj kategoriji.
+
+- *KategorijaID – svaki proizvod mora biti klasificiran unutar postojećih kategorija (npr. kava, alkoholna pića itd.)*
+
+```sql
+ALTER TABLE Proizvod ADD FOREIGN KEY (KategorijaID) REFERENCES KategorijaProizvoda (KategorijaID);
+```
+**Alter table Placanje**
+
+Svako plaćanje mora biti povezano s postojećom narudžbom.
+
+- *NarudzbaID – ne može postojati plaćanje za narudžbu koja nije zabilježena u sustavu.*
+
+```sql
+ALTER TABLE Placanje ADD FOREIGN KEY (NarudzbaID) REFERENCES Narudzba (NarudzbaID);
+```
+
+**Alter table ProizvodDobavljac**
+
+- *Povezujemo proizvode i dobavljače kako bismo znali tko što isporučuje.*
+- *ProizvodID – mora biti validan proizvod.*
+- *DobavljacID – mora biti validan dobavljač.*
+
+```sql
+ALTER TABLE ProizvodDobavljac ADD FOREIGN KEY (ProizvodID) REFERENCES Proizvod (ProizvodID);
+ALTER TABLE ProizvodDobavljac ADD FOREIGN KEY (DobavljacID) REFERENCES Dobavljac (DobavljacID);
+```
+
+**Alter table ZalihaSirovina**
+
+Za svaku sirovinu mora postojati stanje zaliha.
+
+- *SirovinaID – zaliha mora biti povezana s postojećom sirovinom.*
+
+```sql
+ALTER TABLE `ZalihaSirovina` ADD FOREIGN KEY (`SirovinaID`) REFERENCES `Sirovina` (`SirovinaID`);
+```
+
+**Alter table NabavnaNarudzba**
+
+Svaka nabavna narudžba mora biti upućena stvarnom dobavljaču.
+
+- *DobavljacID – narudžba mora biti poslana dobavljaču koji postoji u sustavu.*
+
+```sql
+ALTER TABLE NabavnaNarudzba ADD FOREIGN KEY (DobavljacID) REFERENCES Dobavljac (DobavljacID);
+```
+
+**Alter table StavkaNabavneNarudzbe**
+
+Stavke unutar nabavne narudžbe moraju biti povezane s postojećim narudžbama i sirovinama.
+
+- *NabavnaNarudzbaID – stavka mora pripadati narudžbi.*
+- *SirovinaID – stavka mora sadržavati stvarnu sirovinu.*
+
+```sql
+ALTER TABLE StavkaNabavneNarudzbe ADD FOREIGN KEY (NabavnaNarudzbaID) REFERENCES NabavnaNarudzba (NabavnaNarudzbaID);
+ALTER TABLE StavkaNabavneNarudzbe ADD FOREIGN KEY (SirovinaID) REFERENCES Sirovina (SirovinaID);
+```
+
+**Alter table Smjena**
+
+Svaka smjena mora pripadati zaposleniku.
+
+-  *ZaposlenikID – smjenu može imati samo netko tko je zaposlen.*
+
+```sql
+ALTER TABLE Smjena ADD FOREIGN KEY (ZaposlenikID) REFERENCES Zaposlenik (ZaposlenikID);
 ```
