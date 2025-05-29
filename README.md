@@ -204,4 +204,29 @@ Relacija Placanje pohranjuje informacije o izvršenim plaćanjima za narudžbe. 
 
 <img width="182" alt="image" src="https://github.com/user-attachments/assets/c5d65043-de19-40ac-b97d-c9a22b4a8d61" />
 
+**Relacija Dobavljac**\
+
+Relacija Dobavljac sadrži informacije o vanjskim dobavljačima koji isporučuju sirovine ili gotove proizvode. Omogućuje praćenje podataka i izgradnju odnosa s partnerima.
+
+ - *DobavljacID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator dobavljača, podatak tipa INTEGER
+ - *Naziv* - Ime dobavljačke firme, podatak tipa VARCHAR(255),
+  - *Telefon* -Kontakt podaci dobavljača, podatak tipa VARCHAR(255),
+  - *Email*  - Kontakt podaci dobavljača, podatak tipa VARCHAR(255)
+  - 
+  Relacije:
+- *Veza s ProizvodDobavljac i NabavnaNarudzba: jedan dobavljač može isporučivati više proizvoda ili sirovina*
+
+  <img width="203" alt="image" src="https://github.com/user-attachments/assets/8cc06499-8d77-4c45-8fac-07a5a73c30fd" />
+
+**Relacija ProizvodDobavljac**\
+Predstavlja vezu između proizvoda i dobavljača. Koristi se za praćenje koji dobavljač može dostaviti koji proizvod i u kojem roku.
+
+ - *ProizvodID* - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER
+  - *DobavljacID* - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER
+  - *RokIsporuke* - Datum ili vremenski rok unutar kojeg se očekuje isporuka proizvoda, podatak tipa DATETIME
+  - *PRIMARY KEY (ProizvodID, DobavljacID)* - Primarni ključ predstavlja složeni ključ koji jedinstveno identificira svaki zapis kao kombinaciju određenog proizvoda i dobavljača. Na taj način se sprječava ponavljanje istih parova i osigurava ispravnost veze više na više između proizvoda i dobavljača.
+
+
+<img width="251" alt="image" src="https://github.com/user-attachments/assets/db862383-40ba-4c99-a58f-3fd280e12e27" />
+
 
