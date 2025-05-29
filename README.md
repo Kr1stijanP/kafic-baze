@@ -96,8 +96,7 @@ Relacija Narudzba evidentira sve narudžbe koje su kupci napravili, uključujuć
 - *stolID* – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
 - *zaposlenikID* – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
 
-
-
+<img width="196" alt="image" src="https://github.com/user-attachments/assets/dc5b4609-3c12-4e5c-b975-a63f3125f29d" />
 
 
 **Relacija rezervacija**\
