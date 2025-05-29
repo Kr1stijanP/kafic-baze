@@ -38,13 +38,13 @@ Entitet **Proizvod** povezan je s entitetom **Dobavljac** preko pomoćnog entite
 
 
 Relacija **kupac**\
-Pohranjuje osnovne podatke o kupcima i njihov status lojalnosti, a sastoji se od sljedećih atributa:
+Služi za pohranu podataka o kupcima kafića. Svaki kupac ima jedinstveni identifikator i može imati više rezervacija i narudžbi te svoj status lojalnosti. Relacija se sastoji od sljedećih atributa:
 
 - *kupacID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije te obavezno mora imati vrijednost zbog PRIMARY KEY ograničenja
-- *ime* – podatak tipa VARCHAR(255) 
-- *prezime* – podatak tipa VARCHAR(255)
-- *telefon* – podatak tipa VARCHAR(255)
-- *email* – podatak tipa VARCHAR(255),
+- *ime* – podatak tipa VARCHAR(255), osobni podaci kupca
+- *prezime* – podatak tipa VARCHAR(255), osobni podaci kupca
+- *telefon* – podatak tipa VARCHAR(255), kontakt 
+- *email* – podatak tipa VARCHAR(255), kontakt
 - *statusVjernosti* – podatak tipa VARCHAR(255), označava status lojalnosti kupca (npr. standardni, zlatni, VIP)
 
 
@@ -53,14 +53,14 @@ Pohranjuje osnovne podatke o kupcima i njihov status lojalnosti, a sastoji se od
 
 
 Relacija **zaposlenik**\
-Evidentira podatke o zaposlenicima, sastoji od sljedećih atributa:
+Sadrži informacije o zaposlenicima kafića. Svaki zaposlenik pripada određenoj ulozi i može biti zadužen za narudžbe ili smjene. Sastoji od sljedećih atributa:
 
 - *zaposlenikID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)
-- *ime* – podatak tipa VARCHAR(255)
-- *prezime* – podatak tipa VARCHAR(255)
+- *ime* – podatak tipa VARCHAR(255), osobni podaci
+- *prezime* – podatak tipa VARCHAR(255), osobni podaci
 - *ulogaID* – podatak tipa INTEGER, predstavlja strani ključ koji referencira relaciju uloga
-- *telefon* – podatak tipa VARCHAR(255)
-- *email* – podatak tipa VARCHAR(255)
+- *telefon* – podatak tipa VARCHAR(255), kontakt
+- *email* – podatak tipa VARCHAR(255), kontakt 
 
 
 <img width="206" alt="image" src="https://github.com/user-attachments/assets/d4c695a5-f55e-45d5-b573-e5a1f4b7d4a8" />
