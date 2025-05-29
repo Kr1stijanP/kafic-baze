@@ -205,7 +205,6 @@ Relacija Placanje pohranjuje informacije o izvršenim plaćanjima za narudžbe. 
 <img width="182" alt="image" src="https://github.com/user-attachments/assets/c5d65043-de19-40ac-b97d-c9a22b4a8d61" />
 
 **Relacija Dobavljac**\
-
 Relacija Dobavljac sadrži informacije o vanjskim dobavljačima koji isporučuju sirovine ili gotove proizvode. Omogućuje praćenje podataka i izgradnju odnosa s partnerima.
 
  - *DobavljacID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator dobavljača, podatak tipa INTEGER
@@ -229,4 +228,42 @@ Predstavlja vezu između proizvoda i dobavljača. Koristi se za praćenje koji d
 
 <img width="251" alt="image" src="https://github.com/user-attachments/assets/db862383-40ba-4c99-a58f-3fd280e12e27" />
 
+**Relacija Sirovina**\
+Sadrži popis svih sirovina koje se koriste za pripremu proizvoda (npr. kava, mlijeko). Svaka sirovina ima mjeru koja određuje kako se zalihe vode.
+
+- *SirovinaID PRIMARY KEY* -  Primarni ključ jedinstveni identifikator sirovine, podatak tipa INTEGER
+ - *Naziv* -Naziv sirovine, podatak tipa VARCHAR(255),
+ - *JedinicaMjere* - Mjerna jedinica (npr. litra, gram), podatak tipa VARCHAR(255)
+
+Relacije:
+- * Sirovina — StavkaNabavneNarudzbe: Veza jedan na jedan. Ista sirovina može biti sadržana u više stavki različitih nabavnih narudžbi.*
+
+<img width="204" alt="image" src="https://github.com/user-attachments/assets/518e288e-90b3-43b6-8223-9a69b2979dcb" />
+
+**Relacija ZalihaSirovina**\
+Prati trenutno stanje sirovina na skladištu. Ključno za praćenje potrošnje i pravovremenu nabavu novih zaliha.
+
+ -*SirovinaID PRIMARY KEY* - Primarni ključ i strani ključ prema Sirovina, podatak tipa INTEGER
+ - *KolicinaNaSkladistu* - Trenutna dostupna količina, podatak tipa  DECIMAL,
+  - *GranicaNarudzbe* -  Donja granica ispod koje se automatski pokreće narudžba, podatak tipa  DECIMAL
+
+Relacije:
+- * Tablica ZalihaSirovina je u vezi jedan na jedan s tablicom Sirovina, jer se za svaku sirovinu evidentira točno jedno stanje zaliha. Osigurava da svaka sirovina ima jedan zapis o trenutnoj količini i granici za ponovnu narudžbu.*
+
+<img width="204" alt="image" src="https://github.com/user-attachments/assets/97e4b503-8105-436e-8e06-b2f1edb1b8a9" />
+
+**Relacija NabavnaNarudzba**\
+Evidentira sve narudžbe sirovina koje se šalju dobavljačima. Omogućuje praćenje datuma narudžbe i očekivanog dolaska robe.
+
+- *NabavnaNarudzbaID* – Primarni ključ, podatak tipa INTEGER
+- *DobavljacID* – Strani ključ, označava kojem dobavljaču je narudžba upućena, podatak tipa INTEGER
+- *DatumNarudzbe* – Datum kada je narudžba napravljena, podatak tipa DATE
+- *OcekivaniDatum* – Datum kada se očekuje isporuka, podatak tipa DATE
+
+Relacije:
+
+- *NabavnaNarudzba — Dobavljac: Veza više na jedan – više narudžbi može biti upućeno istom dobavljaču. Povezivanje se vrši putem stranog ključa DobavljacID*
+- *NabavnaNarudzba — StavkaNabavneNarudzbe: Veza jedan na više – jedna nabavna narudžba može sadržavati više različitih sirovina. Povezivanje se vrši preko NabavnaNarudzbaID.*
+
+  <img width="221" alt="image" src="https://github.com/user-attachments/assets/7e85c5ad-1906-4810-bb21-e985c7852155" />
 
