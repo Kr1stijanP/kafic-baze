@@ -134,9 +134,9 @@ Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi 
   - *KategorijaID* - Strani ključ, povezuje proizvod s njegovom kategorijom (npr. piće, hrana), podatak tipa INTEGER
 
 Relacije:
-\Veza s KategorijaProizvoda: svaki proizvod pripada jednoj kategoriji.
-\Veza s StavkaNarudzbe: proizvod može biti dio više narudžbi.
-\Veza s ProizvodDobavljac: omogućuje praćenje dobavljača za svaki proizvod.
+*Veza s KategorijaProizvoda: svaki proizvod pripada jednoj kategoriji.*
+*Veza s StavkaNarudzbe: proizvod može biti dio više narudžbi.*
+*Veza s ProizvodDobavljac: omogućuje praćenje dobavljača za svaki proizvod.*
 
 <img width="197" alt="image" src="https://github.com/user-attachments/assets/3ba03331-8c14-46b8-a20d-6688471e4d68" />
 
