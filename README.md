@@ -371,3 +371,80 @@ INSERT INTO Zaposlenik (ZaposlenikID, Ime, Prezime, UlogaID, Telefon, Email) VAL
 (10, 'Niko', 'Radić', 1, '0910000001', 'niko.radic@caffe.com');
 
 ```
+
+## UPITI
+
+**UPIT 1**
+
+ Upit 1 prikazuje Koliko naruzdbi ima svaki dobavljač
+
+ - *Spajamo dvije tablice NabavnaNarudzba i Dobavljac, Spajamo DobavljacID iz tablice i pomoću operacije COUNT prebrojimo sve naruzbe pojedinog Dobavljaca, Sortiramo ih premo kolicini naruzba.*
+
+```sql
+SELECT D.Naziv AS NazivDobavljaca, 
+COUNT(N.NabavnaNarudzbaID) AS BrojNarudzbi 
+FROM NabavnaNarudzba AS N 
+JOIN Dobavljac AS D ON N.DobavljacID = D.DobavljacID 
+GROUP BY D.DobavljacID, D.Naziv 
+ORDER BY BrojNarudzbi DESC, D.Naziv;
+```
+**UPIT 2**
+
+Upit 2 prikazuje koliko rezervacija ima kafić po svakom danu
+
+- *Koristimo operaciju DATE kako bih limitirali podatke samo na datum, Koristeći COUNT operaciju prebrojimo sve rezervacije, koje ona grupiramo po datumu sa operacijom GROUP BY.*
+  
+```sql
+SELECT DATE(DatumVrijeme) AS Dan, 
+       COUNT(*) AS RezervacijePoDanu 
+FROM Rezervacija 
+GROUP BY DATE(DatumVrijeme);
+```
+
+**UPIT 3**
+
+Upit 3 prikazuje prosječni broj dana isporuke svakog Dobavljaca 
+
+- *Koristeći DATEFIFF operaciju dobimo razliku dana između OcekivaniDatum i DatumNarudzbe. Zatim spojimo DobavkljacID od tablice Dobavljač i NabavaNarudzba. Nakraju grupiramo podatke pomoću DobavljacID sa operacijom GROUP BY, i zatim sortiramo rezultat uzlaznim redosljedom*
+
+```sql
+  SELECT D.Naziv AS NazivDobavljaca,
+       AVG(DATEDIFF(N.OcekivaniDatum, N.DatumNarudzbe)) AS ProsjecnoIsporukeDana 
+FROM NabavnaNarudzba AS N 
+JOIN Dobavljac AS D ON N.DobavljacID = D.DobavljacID 
+GROUP BY D.DobavljacID, D.Naziv 
+ORDER BY ProsjecnoIsporukeDana, D.Naziv;
+```
+
+**UPIT 4**
+
+Upit 4 prikazuje Količinu, Cijenu i Naziv proizvoda koji je pojedini kupac naručio.
+
+- *Želimo spojiti 4 tablice, Korisitmo INNER JOIN operaciju za tablicu Kupac,StavkaNarudzbe i Proizvod da se spoje sa tablicom Narudzba, Sortiramo rezultat operacijom ORDER BY Uzlaznim redosljedom.*
+
+```sql
+  SELECT Naru.NarudzbaID, DatumVrijeme, Ime, Prezime, Kolicina, JedinicnaCijena, Naziv 
+FROM (((Narudzba AS Naru  
+INNER JOIN Kupac AS Kup ON Naru.KupacID = Kup.KupacID)  
+INNER JOIN StavkaNarudzbe AS Stav ON Naru.NarudzbaID = Stav.NarudzbaID) 
+INNER JOIN Proizvod AS Pro ON Stav.ProizvodID = Pro.ProizvodID) 
+ORDER BY Naru.DatumVrijeme;
+```
+
+**UPIT 5**
+
+Upit 5 prikazuje smjene i radne dane svakoga zaposlenika.
+
+- *Želimo prebrojiti broj radni dana na kojim je Zaposlenik radio,Koristimo COUNT() operator sa DISTINCT DATE() koji koji neće brojati isti datum. Koristimo INNER JOIN za spajanje tablice Zaposlenik i Uloga sa tablicom Smjena, zatim Grupiramo podatke i sortiramo sa ORDER BY.*
+
+```sql
+SELECT Z.Ime, Z.Prezime, U.NazivUloge, 
+       COUNT(S.SmjenaID) AS BrojSmjena,
+       COUNT(DISTINCT DATE(S.DatumVrijemePocetka)) AS BrojRadnihDana
+FROM (Smjena AS S
+INNER JOIN Zaposlenik AS Z ON S.ZaposlenikID = Z.ZaposlenikID)
+INNER JOIN Uloga AS U ON Z.UlogaID = U.UlogaID
+GROUP BY Z.ZaposlenikID, Z.Ime, Z.Prezime, U.NazivUloge
+ORDER BY BrojSmjena DESC, Z.Prezime;
+```
+
