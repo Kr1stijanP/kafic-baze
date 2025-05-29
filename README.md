@@ -127,17 +127,6 @@ Relacije:
 
 <img width="197" alt="image" src="https://github.com/user-attachments/assets/3ba03331-8c14-46b8-a20d-6688471e4d68" />
 
-**Relacija KategorijaProizvoda**\
-Evidentira kategorije kojima proizvodi mogu pripadati, sastoji se od sljedećih atributa:
-
-- *kategorijaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
-- *nazivKategorije* – podatak tipa VARCHAR(255), označava naziv kategorije kojoj proizvod pripada
-
-Ova relacija omogućuje grupiranje proizvoda po vrstama, a koristi se kao strana relacija u tablici proizvod, preko atributa kategorijaID.
-
-![image](https://github.com/user-attachments/assets/470b89cd-b21e-4cdb-8758-8ca553583990)
-
-
 **Relacija StakvaNarudzbe**\
 Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proizvoda koji su naručeni. Svaka narudžba može sadržavati više stavki, a svaka stavka odnosi se na određeni proizvod s određenom količinom i cijenom.
 
