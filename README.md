@@ -233,5 +233,8 @@ Relacije:
 ## Alter table ograničenja
 
 **_Alter Table Zaposlenik_**
-<pre> ```sql ALTER TABLE `Zaposlenik` ADD FOREIGN KEY (`UlogaID`) REFERENCES `Uloga` (`UlogaID`); ``` </pre>
+```sql
+ALTER TABLE `Zaposlenik`
+ADD FOREIGN KEY (`UlogaID`)
+REFERENCES `Uloga` (`UlogaID`);
 
