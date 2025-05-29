@@ -232,14 +232,14 @@ Relacije:
 
 ## Alter table ograničenja
 
-**_Alter Table Zaposlenik_**
+**Alter Table Zaposlenik**
 
 Putem stranog ključa osiguravamo da svaki zaposlenik ima točno definiranu ulogu.
 
 - *Ograničenje UlogaID – povezuje zaposlenika s tablicom Uloga, čime se osigurava da svaki zaposlenik može imati samo postojeću i definiranu ulogu poput "Konobar", "Menadžer" itd.*
 
 ```sql
-ALTER TABLE `Zaposlenik` ADD FOREIGN KEY (`UlogaID`) REFERENCES `Uloga` (`UlogaID`);
+ALTER TABLE Zaposlenik ADD FOREIGN KEY (UlogaID) REFERENCES Uloga (UlogaID);
 ```
 **Alter Table Rezervacija**
 
@@ -249,7 +249,31 @@ Povezujemo rezervaciju s kupcem i stolom kako bismo znali tko i gdje ima rezerva
 - *StolID – veže rezervaciju za konkretan fizički stol.*
 
 ```sql
-ALTER TABLE `Rezervacija` ADD FOREIGN KEY (`KupacID`) REFERENCES `Kupac` (`KupacID`);
-ALTER TABLE `Rezervacija` ADD FOREIGN KEY (`StolID`) REFERENCES `Stol` (`StolID`);
+ALTER TABLE Rezervacija ADD FOREIGN KEY (KupacID) REFERENCES Kupac (KupacID);
+ALTER TABLE Rezervacija ADD FOREIGN KEY (StolID) REFERENCES Stol (StolID);
 ```
 
+**Alter table Narudzba**
+
+Narudžba se mora povezati s kupcem koji naručuje, stolom za kojim sjedi i zaposlenikom koji ju zaprimio.
+
+- *KupacID – narudžba mora biti vezana za kupca koji ju je napravio.*
+- *StolID – narudžba mora biti vezana za stvarni stol.*
+- *ZaposlenikID – narudžbu mora zaprimiti postojeći zaposlenik.*
+
+```sql
+ALTER TABLE Narudzba ADD FOREIGN KEY (KupacID) REFERENCES Kupac (KupacID);
+ALTER TABLE Narudzba ADD FOREIGN KEY (StolID) REFERENCES Stol (StolID);
+ALTER TABLE Narudzba ADD FOREIGN KEY (ZaposlenikID) REFERENCES Zaposlenik (ZaposlenikID);
+```
+
+**Alter table StavkaNarudzbe**
+
+Svaka stavka u narudžbi mora pripadati postojećoj narudžbi i odnositi se na stvarni proizvod.
+
+- *NarudzbaID – stavka mora biti dio postojeće narudžbe.*
+- *ProizvodID – stavka mora referencirati stvarni proizvod iz ponude.*
+```sql
+ALTER TABLE StavkaNarudzbe ADD FOREIGN KEY (NarudzbaID) REFERENCES Narudzba (NarudzbaID);
+ALTER TABLE StavkaNarudzbe ADD FOREIGN KEY (ProizvodID) REFERENCES Proizvod (ProizvodID);
+```
