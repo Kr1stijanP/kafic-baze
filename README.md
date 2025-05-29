@@ -233,10 +233,21 @@ Relacije:
 ## Alter table ograničenja
 
 **_Alter Table Zaposlenik_**
+
+Putem stranog ključa osiguravamo da svaki zaposlenik ima točno definiranu ulogu.
+
+- *Ograničenje UlogaID – povezuje zaposlenika s tablicom Uloga, čime se osigurava da svaki zaposlenik može imati samo postojeću i definiranu ulogu poput "Konobar", "Menadžer" itd.*
+
 ```sql
 ALTER TABLE `Zaposlenik` ADD FOREIGN KEY (`UlogaID`) REFERENCES `Uloga` (`UlogaID`);
 ```
 **Alter Table Rezervacija**
+
+Povezujemo rezervaciju s kupcem i stolom kako bismo znali tko i gdje ima rezervaciju.
+
+- *KupacID – osigurava da rezervaciju može imati samo postojeći kupac.*
+- *StolID – veže rezervaciju za konkretan fizički stol.*
+
 ```sql
 ALTER TABLE `Rezervacija` ADD FOREIGN KEY (`KupacID`) REFERENCES `Kupac` (`KupacID`);
 ALTER TABLE `Rezervacija` ADD FOREIGN KEY (`StolID`) REFERENCES `Stol` (`StolID`);
