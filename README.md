@@ -118,10 +118,26 @@ Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proiz
   - *NarudzbaID* - složeni primarni ključ (zajedno s ProizvodID), označava kojoj narudžbi stavka pripada, podatak tipa INTEGER
   - *ProizvodID* -  složeni primarni ključ  označava koji je proizvod naručen, podatak tipa INTEGER
   - *Kolicina* - količina naručenog proizvoda, podatak tipa INTEGER
-  - *JedinicnaCijena* - cijena po jedinici proizvoda u trenutku narudžbe (omogućuje praćenje povijesnih cijena), podatak tipa INTEGER
+  - *JedinicnaCijena* - cijena po jedinici proizvoda u trenutku narudžbe (omogućuje praćenje povijesnih cijena), podatak tipa DECIMAL
   - *PRIMARY KEY (NarudzbaID, ProizvodID)* - NarudzbaID je strani ključ prema tablici Narudzba. ProizvodID je strani ključ prema tablici Proizvod. Jedna narudžba može sadržavati više   stavki, a jedan proizvod može biti dio više narudžbi.
   
 <img width="238" alt="image" src="https://github.com/user-attachments/assets/168ce966-159a-4dda-828e-8038db9df5d4" />
 
+
+**Relacija Proizvod**\
+Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi o pićima ili drugim uslugama. Svaki proizvod pripada određenoj kategoriji i ima definiranu cijenu i opis.
+
+ - *ProizvodID int PRIMARY KEY* - Primarni ključ, jedinstveni identifikator proizvoda, podatak tipa INTEGER
+  - *Naziv varchar(255)* -  Ime proizvoda , podatak tipa VARCHAR(255)
+  - *Opis* - Detaljniji opis proizvoda, podatak tipa TEXT
+  - *Cijena* - Trenutna jedinična cijena proizvoda, podatak tipa DECIMAL
+  - *KategorijaID* - Strani ključ, povezuje proizvod s njegovom kategorijom (npr. piće, hrana), podatak tipa INTEGER
+  - 
+Relacije:
+Veza s KategorijaProizvoda: svaki proizvod pripada jednoj kategoriji.
+Veza s StavkaNarudzbe: proizvod može biti dio više narudžbi.
+Veza s ProizvodDobavljac: omogućuje praćenje dobavljača za svaki proizvod.
+
+<img width="197" alt="image" src="https://github.com/user-attachments/assets/3ba03331-8c14-46b8-a20d-6688471e4d68" />
 
 
