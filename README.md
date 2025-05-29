@@ -148,7 +148,8 @@ Evidentira kategorije kojima proizvodi mogu pripadati, sastoji se od sljedećih 
 
 Ova relacija omogućuje grupiranje proizvoda po vrstama, a koristi se kao strana relacija u tablici proizvod, preko atributa kategorijaID.
 
-![image](https://github.com/user-attachments/assets/01e46162-77af-4aaf-b8e8-543853342fde)
+![image](https://github.com/user-attachments/assets/bef77d4b-1844-4f58-9170-4a7114f1a297)
+
 
 
 
