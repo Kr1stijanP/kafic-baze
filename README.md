@@ -2,6 +2,8 @@
 
 U priloženoj dokumentaciji prezentirat ćemo naš projektni zadatak iz kolegija Baze podataka 1. Cilj projekta je razviti funkcionalan model baze podataka koji omogućuje učinkovito upravljanje različitim aspektima rada kafića, uključujući narudžbe, rezervacije, zaposlenike, zalihe sirovina i financijske transakcije. 
 Kao prvi korak izrade baze podataka odlučili smo generirati vlastite tablice i podatke, kako bismo pojednostavili unos točnih podataka i izbjegli oslanjanje na vanjske izvore.
+Kroz ovu dokumentaciju detaljno su opisane sve tablice, njihova svrha, atributi, relacije, kao i ključna ograničenja implementirana putem SQL naredbi ALTER TABLE. Uz to, prikazani su i korisni SQL upiti koji omogućuju uvid u važne aspekte poslovanja, kao što su broj rezervacija, analiza narudžbi, smjene zaposlenika i vrijeme isporuke od strane dobavljača.
+
 ## Opis ER dijagrama
 
 [Link na Entity Relationship (ER) dijagram](https://lucid.app/lucidchart/7e3ca596-78ec-4f8d-9e66-618cb6cf1f40/edit?viewport_loc=-2689%2C-743%2C4235%2C1887%2C0_0&invitationId=inv_76bfcfcb-73cd-451d-8128-f57a1b90cb83)
@@ -941,3 +943,7 @@ GROUP BY Dan
 ORDER BY BrojPlacanja DESC
 LIMIT 7;
 ```
+
+##ZAKLJUČAK
+
+Kroz ovu dokumentaciju prikazali smo strukturu baze podataka koja omogućuje učinkovito upravljanje poslovanjem kafića. Baza obuhvaća ključne entitete poput kupaca, zaposlenika, stolova, narudžbi, proizvoda, rezervacija, plaćanja i dobavljača, povezanih logičkim relacijama i referencijalnim integritetom putem stranih ključeva.
