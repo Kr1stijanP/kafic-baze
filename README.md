@@ -40,12 +40,12 @@ Entitet **Proizvod** povezan je s entitetom **Dobavljac** preko pomoćnog entite
 Relacija **kupac**\
 Služi za pohranu podataka o kupcima kafića. Svaki kupac ima jedinstveni identifikator i može imati više rezervacija i narudžbi te svoj status lojalnosti. Relacija se sastoji od sljedećih atributa:
 
-- *kupacID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije te obavezno mora imati vrijednost zbog PRIMARY KEY ograničenja
-- *ime* – podatak tipa VARCHAR(255), osobni podaci kupca
-- *prezime* – podatak tipa VARCHAR(255), osobni podaci kupca
-- *telefon* – podatak tipa VARCHAR(255), kontakt 
-- *email* – podatak tipa VARCHAR(255), kontakt
-- *statusVjernosti* – podatak tipa VARCHAR(255), označava status lojalnosti kupca (npr. standardni, zlatni, VIP)
+- *kupacID – podatak tipa INTEGER, koji je primarni ključ unutar relacije te obavezno mora imati vrijednost zbog PRIMARY KEY ograničenja*
+- *ime – podatak tipa VARCHAR(255), osobni podaci kupca*
+- *prezime – podatak tipa VARCHAR(255), osobni podaci kupca*
+- *telefon – podatak tipa VARCHAR(255), kontakt*
+- *email – podatak tipa VARCHAR(255), kontakt*
+- *statusVjernosti – podatak tipa VARCHAR(255), označava status lojalnosti kupca (standardni, zlatni, VIP)*
 
 ```sql
 CREATE TABLE Kupac (
@@ -61,12 +61,12 @@ CREATE TABLE Kupac (
 Relacija **zaposlenik**\
 Sadrži informacije o zaposlenicima kafića. Svaki zaposlenik pripada određenoj ulozi i može biti zadužen za narudžbe ili smjene. Sastoji od sljedećih atributa:
 
-- *zaposlenikID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)
-- *ime* – podatak tipa VARCHAR(255), osobni podaci
-- *prezime* – podatak tipa VARCHAR(255), osobni podaci
-- *ulogaID* – podatak tipa INTEGER, predstavlja strani ključ koji referencira relaciju uloga
-- *telefon* – podatak tipa VARCHAR(255), kontakt
-- *email* – podatak tipa VARCHAR(255), kontakt 
+- *zaposlenikID – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)*
+- *ime – podatak tipa VARCHAR(255), osobni podaci*
+- *prezime – podatak tipa VARCHAR(255), osobni podaci*
+- *ulogaID – podatak tipa INTEGER, predstavlja strani ključ koji referencira relaciju uloga*
+- *telefon – podatak tipa VARCHAR(255), kontakt*
+- *email – podatak tipa VARCHAR(255), kontakt* 
 
 ```sql
 CREATE TABLE Zaposlenik (
@@ -95,9 +95,9 @@ CREATE TABLE Uloga (
 **Relacija stol**\
 Relacija Stol koristi se za pohranu podataka o fizičkim stolovima u kafiću koji su dostupni za rezervaciju i posluživanje narudžbi. Pomaže u organizaciji sjedećih mjesta i upravljanju kapacitetima prostora.
 
-- *stolID* – podatak tipa INTEGER, primarni ključ jedinstveno identificira svaki stol
-- *brojStola* – podatak tipa INTEGER, oznaka stola
-- *kapacitet* – podatak tipa INTEGER, maksimalan broj osoba koje mogu sjesti za stol.
+- *stolID – podatak tipa INTEGER, primarni ključ jedinstveno identificira svaki stol*
+- *brojStola – podatak tipa INTEGER, oznaka stola*
+- *kapacitet – podatak tipa INTEGER, maksimalan broj osoba koje mogu sjesti za stol.*
 
 ```sql
 CREATE TABLE Stol (
@@ -110,11 +110,11 @@ CREATE TABLE Stol (
 **Relacija narudzba**\
 Relacija Narudzba evidentira sve narudžbe koje su kupci napravili, uključujući informacije o vremenu narudžbe, zaposleniku koji je obradio narudžbu te stolu za kojim je narudžba zabilježena.
 
-- *narudzbaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije
-- *datumVrijeme* – podatak tipa DATETIME, označava točno vrijeme narudžbe
-- *kupacID* – podatak tipa INTEGER, predstavlja **strani ključ** koji referencira kupca koji je napravio narudžbu
-- *stolID* – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
-- *zaposlenikID* – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
+- *narudzbaID – podatak tipa INTEGER, koji je primarni ključ unutar relacije*
+- *datumVrijeme – podatak tipa DATETIME, označava točno vrijeme narudžbe*
+- *kupacID – podatak tipa INTEGER, predstavlja **strani ključ** koji referencira kupca koji je napravio narudžbu*
+- *stolID – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena*
+- *zaposlenikID – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu*
 
 ```sql
 CREATE TABLE Narudzba (
@@ -129,12 +129,12 @@ CREATE TABLE Narudzba (
 **Relacija rezervacija**\
 Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za određene stolove u kafiću. Svaka rezervacija uključuje informaciju o vremenu, broju osoba te statusu rezervacije. 
 
-- *RezervacijaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i jedinstveno identificira svaku rezervaciju
-- *KupacID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Kupac
-- *StolID* – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Stol
-- *DatumVrijeme* – podatak tipa DATETIME, koji označava točan datum i vrijeme kada je rezervacija zakazana
-- *BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena
-- *Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”
+- *RezervacijaID – podatak tipa INTEGER, koji je primarni ključ unutar relacije i jedinstveno identificira svaku rezervaciju*
+- *KupacID – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Kupac*
+- *StolID – podatak tipa INTEGER, koji se ponaša kao strani ključ i povezan je s primarnim ključem tablice Stol*
+- *DatumVrijeme – podatak tipa DATETIME, koji označava točan datum i vrijeme kada je rezervacija zakazana*
+- *BrojOsoba – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena*
+- *Status – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”*
 
 ```sql
 CREATE TABLE Rezervacija (
@@ -150,11 +150,11 @@ CREATE TABLE Rezervacija (
 **Relacija StakvaNarudzbe**\
 Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proizvoda koji su naručeni. Svaka narudžba može sadržavati više stavki, a svaka stavka odnosi se na određeni proizvod s određenom količinom i cijenom.
 
-  - *NarudzbaID* - složeni primarni ključ (zajedno s ProizvodID), označava kojoj narudžbi stavka pripada, podatak tipa INTEGER
-  - *ProizvodID* -  složeni primarni ključ  označava koji je proizvod naručen, podatak tipa INTEGER
-  - *Kolicina* - količina naručenog proizvoda, podatak tipa INTEGER
-  - *JedinicnaCijena* - cijena po jedinici proizvoda u trenutku narudžbe (omogućuje praćenje povijesnih cijena), podatak tipa DECIMAL
-  - *PRIMARY KEY (NarudzbaID, ProizvodID)* - NarudzbaID je strani ključ prema tablici Narudzba. ProizvodID je strani ključ prema tablici Proizvod. Jedna narudžba može sadržavati više   stavki, a jedan proizvod može biti dio više narudžbi.
+  - *NarudzbaID - složeni primarni ključ (zajedno s ProizvodID), označava kojoj narudžbi stavka pripada, podatak tipa INTEGER*
+  - *ProizvodID -  složeni primarni ključ  označava koji je proizvod naručen, podatak tipa INTEGER*
+  - *Kolicina - količina naručenog proizvoda, podatak tipa INTEGER*
+  - *JedinicnaCijena - cijena po jedinici proizvoda u trenutku narudžbe (omogućuje praćenje povijesnih cijena), podatak tipa DECIMAL*
+  - *PRIMARY KEY (NarudzbaID, ProizvodID) - NarudzbaID je strani ključ prema tablici Narudzba. ProizvodID je strani ključ prema tablici Proizvod. Jedna narudžba može sadržavati više   stavki, a jedan proizvod može biti dio više narudžbi.*
   
 ```sql
 CREATE TABLE StavkaNarudzbe (
@@ -169,11 +169,11 @@ CREATE TABLE StavkaNarudzbe (
 **Relacija Proizvod**\
 Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi o pićima ili drugim uslugama. Svaki proizvod pripada određenoj kategoriji i ima definiranu cijenu i opis.
 
- - *ProizvodID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator proizvoda, podatak tipa INTEGER
-  - *Naziv * -  Ime proizvoda , podatak tipa VARCHAR(255)
-  - *Opis* - Detaljniji opis proizvoda, podatak tipa TEXT
-  - *Cijena* - Trenutna jedinična cijena proizvoda, podatak tipa DECIMAL
-  - *KategorijaID* - Strani ključ, povezuje proizvod s njegovom kategorijom (npr. piće, hrana), podatak tipa INTEGER
+ - *ProizvodID PRIMARY KEY - Primarni ključ, jedinstveni identifikator proizvoda, podatak tipa INTEGER*
+  - *Naziv -  Ime proizvoda , podatak tipa VARCHAR(255)*
+  - *Opis - Detaljniji opis proizvoda, podatak tipa TEXT*
+  - *Cijena - Trenutna jedinična cijena proizvoda, podatak tipa DECIMAL*
+  - *KategorijaID - Strani ključ, povezuje proizvod s njegovom kategorijom (npr. piće, hrana), podatak tipa INTEGER*
 
 Relacije:
 - Veza s KategorijaProizvoda: svaki proizvod pripada jednoj kategoriji.
@@ -193,8 +193,8 @@ CREATE TABLE Proizvod (
 **Relacija KategorijaProizvoda**\
 Relacija KategorijaProizvoda služi za klasifikaciju proizvoda. Omogućuje lakše upravljanje i filtriranje proizvoda prema vrsti, što olakšava narudžbu, analizu prodaje i ažuriranje cjenika.
 
-- *KategorijaID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator kategorije proizvoda, podatak tipa INTEGER
-- *NazivKategorije varchar(255)* - Tekstualni naziv kategorije (npr. "bezalkoholna pića"), podatak tipa VARCHAR(255)
+- *KategorijaID PRIMARY KEY - Primarni ključ, jedinstveni identifikator kategorije proizvoda, podatak tipa INTEGER*
+- *NazivKategorije varchar(255) - Tekstualni naziv kategorije (npr. "bezalkoholna pića"), podatak tipa VARCHAR(255)*
   
 - *Veza s relacijom Proizvod - Jedna kategorija može obuhvaćati više proizvoda, dok svaki proizvod pripada točno jednoj kategoriji.
 
@@ -208,11 +208,11 @@ CREATE TABLE KategorijaProizvoda (
 **Relacija Placanje**\
 Relacija Placanje pohranjuje informacije o izvršenim plaćanjima za narudžbe. Omogućuje praćenje ukupnog iznosa naplate, metode plaćanja i vremena transakcije.
 
-  - *PlacanjeID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator plaćanja, podatak tipa INTEGER
-  - *NarudzbaID* - Strani ključ, označava narudžbu na koju se plaćanje odnosi, podatak tipa INTEGER
-  - *Iznos* - Ukupni iznos plaćen za narudžbu, podatak tipa DECIMAL
-  - *NacinPlacanja* - Tekstualna oznaka načina plaćanja (npr. gotovina, kartica) podatak tipa VARCHAR(255),
-  - *DatumVrijeme* - Datum i vrijeme kad je plaćanje izvršeno, podatak tipa DATETIME
+  - *PlacanjeID PRIMARY KEY - Primarni ključ, jedinstveni identifikator plaćanja, podatak tipa INTEGER*
+  - *NarudzbaID - Strani ključ, označava narudžbu na koju se plaćanje odnosi, podatak tipa INTEGER*
+  - *Iznos - Ukupni iznos plaćen za narudžbu, podatak tipa DECIMAL*
+  - *NacinPlacanja - Tekstualna oznaka načina plaćanja (npr. gotovina, kartica) podatak tipa VARCHAR(255)*
+  - *DatumVrijeme - Datum i vrijeme kad je plaćanje izvršeno, podatak tipa DATETIME*
 
   - Relacije:
 -*Veza 1:1 s tablicom Narudzba – svaka narudžba može imati jedno plaćanje*
@@ -231,10 +231,10 @@ CREATE TABLE Placanje (
 **Relacija Dobavljac**\
 Relacija Dobavljac sadrži informacije o vanjskim dobavljačima koji isporučuju sirovine ili gotove proizvode. Omogućuje praćenje podataka i izgradnju odnosa s partnerima.
 
- - *DobavljacID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator dobavljača, podatak tipa INTEGER
- - *Naziv* - Ime dobavljačke firme, podatak tipa VARCHAR(255),
- - *Telefon* -Kontakt podaci dobavljača, podatak tipa VARCHAR(255),
- - *Email*  - Kontakt podaci dobavljača, podatak tipa VARCHAR(255)
+ - *DobavljacID PRIMARY KEY - Primarni ključ, jedinstveni identifikator dobavljača, podatak tipa INTEGER*
+ - *Naziv - Ime dobavljačke firme, podatak tipa VARCHAR(255)*
+ - *Telefon -Kontakt podaci dobavljača, podatak tipa VARCHAR(255)*
+ - *Email  - Kontakt podaci dobavljača, podatak tipa VARCHAR(255)*
    
   Relacije:
 - *Veza s ProizvodDobavljac i NabavnaNarudzba: jedan dobavljač može isporučivati više proizvoda ili sirovina*
@@ -251,10 +251,10 @@ CREATE TABLE Dobavljac (
 **Relacija ProizvodDobavljac**\
 Predstavlja vezu između proizvoda i dobavljača. Koristi se za praćenje koji dobavljač može dostaviti koji proizvod i u kojem roku.
 
- - *ProizvodID* - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER
- - *DobavljacID* - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER
- - *RokIsporuke* - Datum ili vremenski rok unutar kojeg se očekuje isporuka proizvoda, podatak tipa DATETIME
- - *PRIMARY KEY (ProizvodID, DobavljacID)* - Primarni ključ predstavlja složeni ključ koji jedinstveno identificira svaki zapis kao kombinaciju određenog proizvoda i dobavljača. Na taj način se sprječava ponavljanje istih parova i osigurava ispravnost veze više na više između proizvoda i dobavljača.
+ - *ProizvodID - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER*
+ - *DobavljacID - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER*
+ - *RokIsporuke - Datum ili vremenski rok unutar kojeg se očekuje isporuka proizvoda, podatak tipa DATETIME*
+ - *PRIMARY KEY (ProizvodID, DobavljacID) - Primarni ključ predstavlja složeni ključ koji jedinstveno identificira svaki zapis kao kombinaciju određenog proizvoda i dobavljača. Na taj način se sprječava ponavljanje istih parova i osigurava ispravnost veze više na više između proizvoda i dobavljača.*
 
 ```sql
 CREATE TABLE ProizvodDobavljac (
@@ -268,9 +268,9 @@ CREATE TABLE ProizvodDobavljac (
 **Relacija Sirovina**\
 Sadrži popis svih sirovina koje se koriste za pripremu proizvoda (npr. kava, mlijeko). Svaka sirovina ima mjeru koja određuje kako se zalihe vode.
 
-- *SirovinaID PRIMARY KEY* -  Primarni ključ jedinstveni identifikator sirovine, podatak tipa INTEGER
-- *Naziv* -Naziv sirovine, podatak tipa VARCHAR(255),
-- *JedinicaMjere* - Mjerna jedinica (npr. litra, gram), podatak tipa VARCHAR(255)
+- *SirovinaID PRIMARY KEY -  Primarni ključ jedinstveni identifikator sirovine, podatak tipa INTEGER*
+- *Naziv - Naziv sirovine, podatak tipa VARCHAR(255)*
+- *JedinicaMjere - Mjerna jedinica (npr. litra, gram), podatak tipa VARCHAR(255)*
 
 Relacije:
 - *Sirovina — StavkaNabavneNarudzbe: Veza jedan na jedan. Ista sirovina može biti sadržana u više stavki različitih nabavnih narudžbi.*
@@ -286,9 +286,9 @@ CREATE TABLE Sirovina (
 **Relacija ZalihaSirovina**\
 Prati trenutno stanje sirovina na skladištu. Ključno za praćenje potrošnje i pravovremenu nabavu novih zaliha.
 
- - *SirovinaID PRIMARY KEY* - Primarni ključ i strani ključ prema Sirovina, podatak tipa INTEGER
- - *KolicinaNaSkladistu* - Trenutna dostupna količina, podatak tipa  DECIMAL,
- - *GranicaNarudzbe* -  Donja granica ispod koje se automatski pokreće narudžba, podatak tipa  DECIMAL
+ - *SirovinaID PRIMARY KEY - Primarni ključ i strani ključ prema Sirovina, podatak tipa INTEGER*
+ - *KolicinaNaSkladistu - Trenutna dostupna količina, podatak tipa  DECIMAL,*
+ - *GranicaNarudzbe -  Donja granica ispod koje se automatski pokreće narudžba, podatak tipa  DECIMAL*
 
 Relacije:
 - *Tablica ZalihaSirovina je u vezi jedan na jedan s tablicom Sirovina, jer se za svaku sirovinu evidentira točno jedno stanje zaliha. Osigurava da svaka sirovina ima jedan zapis o trenutnoj količini i granici za ponovnu narudžbu.*
@@ -326,10 +326,10 @@ CREATE TABLE NabavnaNarudzba (
 **Relacija StavkaNabavneNarudzbe**\
 Povezuje svaku narudžbu s konkretnim sirovinama koje su naručene i njihovim količinama.
 
-- *NabavnaNarudzbaID* - Predstavlja identifikator nabavne narudžbe, podatak tipa INTEGER. Ova vrijednost određuje kojoj narudžbi pripada pojedinačna stavka.
-- *SirovinaID* – Složeni primarni ključ, podatak tipa INTEGER. Označava točno koju sirovinu sadrži ta stavka unutar određene narudžbe.
-- *Kolicina* – Količina naručene sirovine, podatak tipa DECIMAL. 
-- *PRIMARY KEY (NabavnaNarudzbaID, SirovinaID)* - Složeni primarni ključ. Jedinstveno identificira svaki red u tablici kombinacijom NabavnaNarudzbaID i SirovinaID.  Sprječava da ista sirovina bude više puta unesena unutar iste narudžbe.
+- *NabavnaNarudzbaID - Predstavlja identifikator nabavne narudžbe, podatak tipa INTEGER. Ova vrijednost određuje kojoj narudžbi pripada pojedinačna stavka.*
+- *SirovinaID – Složeni primarni ključ, podatak tipa INTEGER. Označava točno koju sirovinu sadrži ta stavka unutar određene narudžbe.*
+- *Kolicina – Količina naručene sirovine, podatak tipa DECIMAL.*
+- *PRIMARY KEY (NabavnaNarudzbaID, SirovinaID) - Složeni primarni ključ. Jedinstveno identificira svaki red u tablici kombinacijom NabavnaNarudzbaID i SirovinaID.  Sprječava da ista sirovina bude više puta unesena unutar iste narudžbe.*
   
 Relacije:
 - StavkaNabavneNarudzbe — NabavnaNarudzba: Tip veze: više na jedan. Više stavki može pripadati istoj narudžbi. Veza se ostvaruje preko: stranog ključa NabavnaNarudzbaID.
@@ -745,8 +745,7 @@ Upit 14 prikazuje listu lop 10 kupaca po ukupnoj potrošnji.
 - *Upit prikazuje top 10 kupaca koji su najviše potrošili u restoranu. To omogućuje vlasniku uvid u najvrijednije kupce. Ovo može poslužiti pri nagrađivanju određenih kupaca.
 Povezuju se Kupac, Narudzba i Placanje. Prvo se Kupac povezuje s Narudzba pomoću KupacID, a zatim se Narudzba povezuje s Placanje preko NarudzbaID. Na taj način se dolazi do svih plaćenih iznosa koje je pojedini kupac ostvario kroz svoje narudžbe.
 SUM(p.Iznos) računa ukupnu potrošnju za svakog kupca, a ROUND zaokružuje iznos na dvije decimale. Grupiranjem po KupacID, Ime i Prezime osigurava se ispravno zbrajanje po osobi, dok ORDER BY UkupnoPotroseno DESC sortira rezultate tako da se kupci koji troše najviše nalaze na vrhu.
-LIMIT 10 ograničava rezultat samo na prvih 10 kupaca.
-*
+LIMIT 10 ograničava rezultat samo na prvih 10 kupaca.*
 
 ```sql
 SELECT 
