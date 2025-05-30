@@ -240,12 +240,11 @@ Relacija Dobavljac sadrži informacije o vanjskim dobavljačima koji isporučuju
 - *Veza s ProizvodDobavljac i NabavnaNarudzba: jedan dobavljač može isporučivati više proizvoda ili sirovina*
 
 ```sql
-CREATE TABLE Placanje (
-  PlacanjeID int PRIMARY KEY,
-  NarudzbaID int,
-  Iznos decimal,
-  NacinPlacanja varchar(255),
-  DatumVrijeme datetime
+CREATE TABLE Dobavljac (
+  DobavljacID int PRIMARY KEY,
+  Naziv varchar(255),
+  Telefon varchar(255),
+  Email varchar(255)
 );
 ```
 
