@@ -143,7 +143,7 @@ CREATE TABLE Rezervacija (
   StolID int,
   DatumVrijeme datetime,
   BrojOsoba int,
-  `Status` varchar(255)
+  Status varchar(255)
 );
 ```
 
