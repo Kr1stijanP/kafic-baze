@@ -82,8 +82,8 @@ CREATE TABLE Zaposlenik (
 Relacija **uloga**\
 Evidentira vrste uloga koje zaposlenici mogu imati. Relacija uloga se sastoji od sljedećih atributa:
 
-- *ulogaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)
-- *nazivUloge* – podatak tipa VARCHAR(255)
+- *ulogaID – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)*
+- *nazivUloge – podatak tipa VARCHAR(255)*
 
 ```sql
 CREATE TABLE Uloga (
