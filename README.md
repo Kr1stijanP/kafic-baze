@@ -47,8 +47,16 @@ Služi za pohranu podataka o kupcima kafića. Svaki kupac ima jedinstveni identi
 - *email* – podatak tipa VARCHAR(255), kontakt
 - *statusVjernosti* – podatak tipa VARCHAR(255), označava status lojalnosti kupca (npr. standardni, zlatni, VIP)
 
-
-<img width="255" alt="image" src="https://github.com/user-attachments/assets/d2121af8-fcb0-4efd-aa2e-4bdee13d38e4" />
+```sql
+CREATE TABLE Kupac (
+  KupacID int PRIMARY KEY,
+  Ime varchar(255),
+  Prezime varchar(255),
+  Telefon varchar(255),
+  Email varchar(255),
+  StatusVjernosti varchar(255)
+);
+```
 
 Relacija **zaposlenik**\
 Sadrži informacije o zaposlenicima kafića. Svaki zaposlenik pripada određenoj ulozi i može biti zadužen za narudžbe ili smjene. Sastoji od sljedećih atributa:
@@ -60,7 +68,16 @@ Sadrži informacije o zaposlenicima kafića. Svaki zaposlenik pripada određenoj
 - *telefon* – podatak tipa VARCHAR(255), kontakt
 - *email* – podatak tipa VARCHAR(255), kontakt 
 
-<img width="206" alt="image" src="https://github.com/user-attachments/assets/d4c695a5-f55e-45d5-b573-e5a1f4b7d4a8" />
+```sql
+CREATE TABLE Zaposlenik (
+  ZaposlenikID int PRIMARY KEY,
+  Ime varchar(255),
+  Prezime varchar(255),
+  UlogaID int,
+  Telefon varchar(255),
+  Email varchar(255)
+);
+```
 
 Relacija **uloga**\
 Evidentira vrste uloga koje zaposlenici mogu imati. Relacija uloga se sastoji od sljedećih atributa:
@@ -68,7 +85,12 @@ Evidentira vrste uloga koje zaposlenici mogu imati. Relacija uloga se sastoji od
 - *ulogaID* – podatak tipa INTEGER, koji je primarni ključ unutar relacije i obavezno mora imati vrijednost (zbog PRIMARY KEY ograničenja)
 - *nazivUloge* – podatak tipa VARCHAR(255)
 
-<img width="172" alt="image" src="https://github.com/user-attachments/assets/2fc2edd6-5d70-464e-aa35-db0f2226ee7e" />
+```sql
+CREATE TABLE Uloga (
+  UlogaID int PRIMARY KEY,
+  NazivUloge varchar(255)
+);
+```
 
 **Relacija stol**\
 Relacija Stol koristi se za pohranu podataka o fizičkim stolovima u kafiću koji su dostupni za rezervaciju i posluživanje narudžbi. Pomaže u organizaciji sjedećih mjesta i upravljanju kapacitetima prostora.
@@ -77,7 +99,13 @@ Relacija Stol koristi se za pohranu podataka o fizičkim stolovima u kafiću koj
 - *brojStola* – podatak tipa INTEGER, oznaka stola
 - *kapacitet* – podatak tipa INTEGER, maksimalan broj osoba koje mogu sjesti za stol.
 
-<img width="173" alt="image" src="https://github.com/user-attachments/assets/0499c256-8096-42a3-bfdf-007be3700498" />
+```sql
+CREATE TABLE Stol (
+  StolID int PRIMARY KEY,
+  BrojStola int,
+  Kapacitet int
+);
+```
 
 **Relacija narudzba**\
 Relacija Narudzba evidentira sve narudžbe koje su kupci napravili, uključujući informacije o vremenu narudžbe, zaposleniku koji je obradio narudžbu te stolu za kojim je narudžba zabilježena.
@@ -88,7 +116,15 @@ Relacija Narudzba evidentira sve narudžbe koje su kupci napravili, uključujuć
 - *stolID* – podatak tipa INTEGER, predstavlja **strani ključ** koji povezuje narudžbu sa stolom za kojim je napravljena
 - *zaposlenikID* – podatak tipa INTEGER, predstavlja **strani ključ** koji označava zaposlenika koji je zaprimio narudžbu
 
-<img width="196" alt="image" src="https://github.com/user-attachments/assets/dc5b4609-3c12-4e5c-b975-a63f3125f29d" />
+```sql
+CREATE TABLE Narudzba (
+  NarudzbaID int PRIMARY KEY,
+  DatumVrijeme datetime,
+  KupacID int,
+  StolID int,
+  ZaposlenikID int
+);
+```
 
 **Relacija rezervacija**\
 Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za određene stolove u kafiću. Svaka rezervacija uključuje informaciju o vremenu, broju osoba te statusu rezervacije. 
@@ -100,7 +136,16 @@ Relacija Rezervacija prati podatke o rezervacijama koje kupci izrađuju za odre�
 - *BrojOsoba* – podatak tipa INTEGER, koji označava broj osoba za koje je rezervacija napravljena
 - *Status* – podatak tipa VARCHAR(255). Koristi se za praćenje statusa rezervacije, primjerice: “aktivna”, “otkazana” ili “dovršena”
 
-<img width="209" alt="image" src="https://github.com/user-attachments/assets/911358ea-0c1d-4366-b1ce-f4144d464e2a" />
+```sql
+CREATE TABLE Rezervacija (
+  RezervacijaID int PRIMARY KEY,
+  KupacID int,
+  StolID int,
+  DatumVrijeme datetime,
+  BrojOsoba int,
+  `Status` varchar(255)
+);
+```
 
 **Relacija StakvaNarudzbe**\
 Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proizvoda koji su naručeni. Svaka narudžba može sadržavati više stavki, a svaka stavka odnosi se na određeni proizvod s određenom količinom i cijenom.
@@ -111,7 +156,15 @@ Relacija StavkaNarudzbe predstavlja vezu između narudžbi i pojedinačnih proiz
   - *JedinicnaCijena* - cijena po jedinici proizvoda u trenutku narudžbe (omogućuje praćenje povijesnih cijena), podatak tipa DECIMAL
   - *PRIMARY KEY (NarudzbaID, ProizvodID)* - NarudzbaID je strani ključ prema tablici Narudzba. ProizvodID je strani ključ prema tablici Proizvod. Jedna narudžba može sadržavati više   stavki, a jedan proizvod može biti dio više narudžbi.
   
-<img width="238" alt="image" src="https://github.com/user-attachments/assets/168ce966-159a-4dda-828e-8038db9df5d4" />
+```sql
+CREATE TABLE StavkaNarudzbe (
+  NarudzbaID int,
+  ProizvodID int,
+  Kolicina int,
+  JedinicnaCijena decimal,
+  PRIMARY KEY (NarudzbaID, ProizvodID)
+);
+```
 
 **Relacija Proizvod**\
 Relacija Proizvod sadrži sve artikle koje kafić nudi kupcima, bilo da se radi o pićima ili drugim uslugama. Svaki proizvod pripada određenoj kategoriji i ima definiranu cijenu i opis.
@@ -127,7 +180,15 @@ Relacije:
 - Veza s StavkaNarudzbe: proizvod može biti dio više narudžbi.
 - Veza s ProizvodDobavljac: omogućuje praćenje dobavljača za svaki proizvod.
 
-<img width="197" alt="image" src="https://github.com/user-attachments/assets/3ba03331-8c14-46b8-a20d-6688471e4d68" />
+```sql
+CREATE TABLE Proizvod (
+  ProizvodID int PRIMARY KEY,
+  Naziv varchar(255),
+  Opis text,
+  Cijena decimal,
+  KategorijaID int
+);
+```
 
 **Relacija KategorijaProizvoda**\
 Relacija KategorijaProizvoda služi za klasifikaciju proizvoda. Omogućuje lakše upravljanje i filtriranje proizvoda prema vrsti, što olakšava narudžbu, analizu prodaje i ažuriranje cjenika.
@@ -137,7 +198,12 @@ Relacija KategorijaProizvoda služi za klasifikaciju proizvoda. Omogućuje lakš
   
 - *Veza s relacijom Proizvod - Jedna kategorija može obuhvaćati više proizvoda, dok svaki proizvod pripada točno jednoj kategoriji.
 
-<img width="211" alt="image" src="https://github.com/user-attachments/assets/6f9d8067-222a-47c1-95b8-723c5112c0d7" />
+```sql
+CREATE TABLE KategorijaProizvoda (
+  KategorijaID int PRIMARY KEY,
+  NazivKategorije varchar(255)
+);
+```
 
 **Relacija Placanje**\
 Relacija Placanje pohranjuje informacije o izvršenim plaćanjima za narudžbe. Omogućuje praćenje ukupnog iznosa naplate, metode plaćanja i vremena transakcije.
@@ -152,7 +218,15 @@ Relacija Placanje pohranjuje informacije o izvršenim plaćanjima za narudžbe. 
 -*Veza 1:1 s tablicom Narudzba – svaka narudžba može imati jedno plaćanje*
 -*Omogućuje analizu prodaje i financijskog poslovanja-*
 
-<img width="182" alt="image" src="https://github.com/user-attachments/assets/c5d65043-de19-40ac-b97d-c9a22b4a8d61" />
+```sql
+CREATE TABLE Placanje (
+  PlacanjeID int PRIMARY KEY,
+  NarudzbaID int,
+  Iznos decimal,
+  NacinPlacanja varchar(255),
+  DatumVrijeme datetime
+);
+```
 
 **Relacija Dobavljac**\
 Relacija Dobavljac sadrži informacije o vanjskim dobavljačima koji isporučuju sirovine ili gotove proizvode. Omogućuje praćenje podataka i izgradnju odnosa s partnerima.
@@ -165,7 +239,15 @@ Relacija Dobavljac sadrži informacije o vanjskim dobavljačima koji isporučuju
   Relacije:
 - *Veza s ProizvodDobavljac i NabavnaNarudzba: jedan dobavljač može isporučivati više proizvoda ili sirovina*
 
-  <img width="203" alt="image" src="https://github.com/user-attachments/assets/8cc06499-8d77-4c45-8fac-07a5a73c30fd" />
+```sql
+CREATE TABLE Placanje (
+  PlacanjeID int PRIMARY KEY,
+  NarudzbaID int,
+  Iznos decimal,
+  NacinPlacanja varchar(255),
+  DatumVrijeme datetime
+);
+```
 
 **Relacija ProizvodDobavljac**\
 Predstavlja vezu između proizvoda i dobavljača. Koristi se za praćenje koji dobavljač može dostaviti koji proizvod i u kojem roku.
@@ -175,7 +257,14 @@ Predstavlja vezu između proizvoda i dobavljača. Koristi se za praćenje koji d
   - *RokIsporuke* - Datum ili vremenski rok unutar kojeg se očekuje isporuka proizvoda, podatak tipa DATETIME
   - *PRIMARY KEY (ProizvodID, DobavljacID)* - Primarni ključ predstavlja složeni ključ koji jedinstveno identificira svaki zapis kao kombinaciju određenog proizvoda i dobavljača. Na taj način se sprječava ponavljanje istih parova i osigurava ispravnost veze više na više između proizvoda i dobavljača.
 
-<img width="251" alt="image" src="https://github.com/user-attachments/assets/db862383-40ba-4c99-a58f-3fd280e12e27" />
+```sql
+CREATE TABLE ProizvodDobavljac (
+  ProizvodID int,
+  DobavljacID int,
+  RokIsporuke datetime,
+  PRIMARY KEY (ProizvodID, DobavljacID)
+);
+```
 
 **Relacija Sirovina**\
 Sadrži popis svih sirovina koje se koriste za pripremu proizvoda (npr. kava, mlijeko). Svaka sirovina ima mjeru koja određuje kako se zalihe vode.
@@ -187,7 +276,13 @@ Sadrži popis svih sirovina koje se koriste za pripremu proizvoda (npr. kava, ml
 Relacije:
 - * Sirovina — StavkaNabavneNarudzbe: Veza jedan na jedan. Ista sirovina može biti sadržana u više stavki različitih nabavnih narudžbi.*
 
-<img width="204" alt="image" src="https://github.com/user-attachments/assets/518e288e-90b3-43b6-8223-9a69b2979dcb" />
+```sql
+CREATE TABLE Sirovina (
+  SirovinaID int PRIMARY KEY,
+  Naziv varchar(255),
+  JedinicaMjere varchar(255)
+);
+```
 
 **Relacija ZalihaSirovina**\
 Prati trenutno stanje sirovina na skladištu. Ključno za praćenje potrošnje i pravovremenu nabavu novih zaliha.
@@ -199,7 +294,13 @@ Prati trenutno stanje sirovina na skladištu. Ključno za praćenje potrošnje i
 Relacije:
 - * Tablica ZalihaSirovina je u vezi jedan na jedan s tablicom Sirovina, jer se za svaku sirovinu evidentira točno jedno stanje zaliha. Osigurava da svaka sirovina ima jedan zapis o trenutnoj količini i granici za ponovnu narudžbu.*
 
-<img width="204" alt="image" src="https://github.com/user-attachments/assets/97e4b503-8105-436e-8e06-b2f1edb1b8a9" />
+```sql
+CREATE TABLE ZalihaSirovina (
+  SirovinaID int PRIMARY KEY,
+  KolicinaNaSkladistu decimal,
+  GranicaNarudzbe decimal
+);
+```
 
 **Relacija NabavnaNarudzba**\
 Evidentira sve narudžbe sirovina koje se šalju dobavljačima. Omogućuje praćenje datuma narudžbe i očekivanog dolaska robe.
@@ -214,7 +315,14 @@ Relacije:
 - *NabavnaNarudzba — Dobavljac: Veza više na jedan – više narudžbi može biti upućeno istom dobavljaču. Povezivanje se vrši putem stranog ključa DobavljacID*
 - *NabavnaNarudzba — StavkaNabavneNarudzbe: Veza jedan na više – jedna nabavna narudžba može sadržavati više različitih sirovina. Povezivanje se vrši preko NabavnaNarudzbaID.*
 
-  <img width="221" alt="image" src="https://github.com/user-attachments/assets/7e85c5ad-1906-4810-bb21-e985c7852155" />
+```sql
+CREATE TABLE NabavnaNarudzba (
+  NabavnaNarudzbaID int PRIMARY KEY,
+  DobavljacID int,
+  DatumNarudzbe date,
+  OcekivaniDatum date
+);
+```
 
 **Relacija StavkaNabavneNarudzbe**\
 Povezuje svaku narudžbu s konkretnim sirovinama koje su naručene i njihovim količinama.
@@ -228,7 +336,14 @@ Relacije:
 - StavkaNabavneNarudzbe — NabavnaNarudzba: Tip veze: više na jedan. Više stavki može pripadati istoj narudžbi. Veza se ostvaruje preko: stranog ključa NabavnaNarudzbaID.
 - StavkaNabavneNarudzbe — Sirovina: Tip veze: više na jedan. Više stavki može sadržavati istu sirovinu, jer ista sirovina može biti naručena u različitim narudžbama. Veza se ostvaruje preko: stranog ključa SirovinaID.
 
-<img width="281" alt="image" src="https://github.com/user-attachments/assets/a8e49f80-e032-498a-aaaf-cc440677c5f2" />
+```sql
+CREATE TABLE StavkaNabavneNarudzbe (
+  NabavnaNarudzbaID int,
+  SirovinaID int,
+  Kolicina decimal,
+  PRIMARY KEY (NabavnaNarudzbaID, SirovinaID)
+);
+```
 
 ## Alter table ograničenja
 
