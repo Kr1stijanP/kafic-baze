@@ -233,9 +233,9 @@ Relacija Dobavljac sadrži informacije o vanjskim dobavljačima koji isporučuju
 
  - *DobavljacID PRIMARY KEY* - Primarni ključ, jedinstveni identifikator dobavljača, podatak tipa INTEGER
  - *Naziv* - Ime dobavljačke firme, podatak tipa VARCHAR(255),
-  - *Telefon* -Kontakt podaci dobavljača, podatak tipa VARCHAR(255),
-  - *Email*  - Kontakt podaci dobavljača, podatak tipa VARCHAR(255)
-  - 
+ - *Telefon* -Kontakt podaci dobavljača, podatak tipa VARCHAR(255),
+ - *Email*  - Kontakt podaci dobavljača, podatak tipa VARCHAR(255)
+ -  
   Relacije:
 - *Veza s ProizvodDobavljac i NabavnaNarudzba: jedan dobavljač može isporučivati više proizvoda ili sirovina*
 
@@ -252,9 +252,9 @@ CREATE TABLE Dobavljac (
 Predstavlja vezu između proizvoda i dobavljača. Koristi se za praćenje koji dobavljač može dostaviti koji proizvod i u kojem roku.
 
  - *ProizvodID* - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER
-  - *DobavljacID* - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER
-  - *RokIsporuke* - Datum ili vremenski rok unutar kojeg se očekuje isporuka proizvoda, podatak tipa DATETIME
-  - *PRIMARY KEY (ProizvodID, DobavljacID)* - Primarni ključ predstavlja složeni ključ koji jedinstveno identificira svaki zapis kao kombinaciju određenog proizvoda i dobavljača. Na taj način se sprječava ponavljanje istih parova i osigurava ispravnost veze više na više između proizvoda i dobavljača.
+ - *DobavljacID* - Složeni primarni ključ, definira vezu između određenog proizvoda i dobavljača, podatak tipa INTEGER
+ - *RokIsporuke* - Datum ili vremenski rok unutar kojeg se očekuje isporuka proizvoda, podatak tipa DATETIME
+ - *PRIMARY KEY (ProizvodID, DobavljacID)* - Primarni ključ predstavlja složeni ključ koji jedinstveno identificira svaki zapis kao kombinaciju određenog proizvoda i dobavljača. Na taj način se sprječava ponavljanje istih parova i osigurava ispravnost veze više na više između proizvoda i dobavljača.
 
 ```sql
 CREATE TABLE ProizvodDobavljac (
@@ -269,11 +269,11 @@ CREATE TABLE ProizvodDobavljac (
 Sadrži popis svih sirovina koje se koriste za pripremu proizvoda (npr. kava, mlijeko). Svaka sirovina ima mjeru koja određuje kako se zalihe vode.
 
 - *SirovinaID PRIMARY KEY* -  Primarni ključ jedinstveni identifikator sirovine, podatak tipa INTEGER
- - *Naziv* -Naziv sirovine, podatak tipa VARCHAR(255),
- - *JedinicaMjere* - Mjerna jedinica (npr. litra, gram), podatak tipa VARCHAR(255)
+- *Naziv* -Naziv sirovine, podatak tipa VARCHAR(255),
+- *JedinicaMjere* - Mjerna jedinica (npr. litra, gram), podatak tipa VARCHAR(255)
 
 Relacije:
-- * Sirovina — StavkaNabavneNarudzbe: Veza jedan na jedan. Ista sirovina može biti sadržana u više stavki različitih nabavnih narudžbi.*
+- *Sirovina — StavkaNabavneNarudzbe: Veza jedan na jedan. Ista sirovina može biti sadržana u više stavki različitih nabavnih narudžbi.*
 
 ```sql
 CREATE TABLE Sirovina (
@@ -286,9 +286,9 @@ CREATE TABLE Sirovina (
 **Relacija ZalihaSirovina**\
 Prati trenutno stanje sirovina na skladištu. Ključno za praćenje potrošnje i pravovremenu nabavu novih zaliha.
 
- -*SirovinaID PRIMARY KEY* - Primarni ključ i strani ključ prema Sirovina, podatak tipa INTEGER
+ - *SirovinaID PRIMARY KEY* - Primarni ključ i strani ključ prema Sirovina, podatak tipa INTEGER
  - *KolicinaNaSkladistu* - Trenutna dostupna količina, podatak tipa  DECIMAL,
-  - *GranicaNarudzbe* -  Donja granica ispod koje se automatski pokreće narudžba, podatak tipa  DECIMAL
+ - *GranicaNarudzbe* -  Donja granica ispod koje se automatski pokreće narudžba, podatak tipa  DECIMAL
 
 Relacije:
 - * Tablica ZalihaSirovina je u vezi jedan na jedan s tablicom Sirovina, jer se za svaku sirovinu evidentira točno jedno stanje zaliha. Osigurava da svaka sirovina ima jedan zapis o trenutnoj količini i granici za ponovnu narudžbu.*
