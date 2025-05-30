@@ -2,7 +2,7 @@
 
 U priloženoj dokumentaciji prezentirat ćemo naš projektni zadatak iz kolegija Baze podataka 1. Cilj projekta je razviti funkcionalan model baze podataka koji omogućuje učinkovito upravljanje različitim aspektima rada kafića, uključujući narudžbe, rezervacije, zaposlenike, zalihe sirovina i financijske transakcije. 
 Kao prvi korak izrade baze podataka odlučili smo generirati vlastite tablice i podatke, kako bismo pojednostavili unos točnih podataka i izbjegli oslanjanje na vanjske izvore.
-Kroz ovu dokumentaciju detaljno su opisane sve tablice, njihova svrha, atributi, relacije, kao i ključna ograničenja implementirana putem SQL naredbi ALTER TABLE. Uz to, prikazani su i korisni SQL upiti koji omogućuju uvid u važne aspekte poslovanja, kao što su broj rezervacija, analiza narudžbi, smjene zaposlenika i vrijeme isporuke od strane dobavljača.
+Kroz ovu dokumentaciju detaljno su opisane sve tablice, njihova svrha, atributi, relacije, kao i ključna ograničenja putem SQL naredbi ALTER TABLE. Uz to prikazani su i korisni SQL upiti koji omogućuju uvid u važne aspekte poslovanja, kao što su broj rezervacija, analiza narudžbi, smjene zaposlenika i vrijeme isporuke od strane dobavljača.
 
 ## Opis ER dijagrama
 
