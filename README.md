@@ -799,8 +799,8 @@ JOIN
     Placanje P ON N.NarudzbaID = P.NarudzbaID
 WHERE
     U.NazivUloge = 'Konobar'
-    AND P.DatumVrijeme >= '2025-06-01 00:00:00'  -- Početak lipnja
-    AND P.DatumVrijeme < '2025-07-01 00:00:00'   -- Kraj lipnja (prije početka srpnja)
+    AND P.DatumVrijeme >= '2025-06-01 00:00:00' 
+    AND P.DatumVrijeme < '2025-07-01 00:00:00'   
 GROUP BY
     Z.ZaposlenikID, Z.Ime, Z.Prezime, U.NazivUloge
 ORDER BY
@@ -828,14 +828,14 @@ JOIN
     Rezervacija R ON K.KupacID = R.KupacID
 WHERE
     K.StatusVjernosti = 'Zlatni'
-    AND R.DatumVrijeme >= '2025-06-01 00:00:00' -- Početak lipnja
-    AND R.DatumVrijeme < '2025-07-01 00:00:00'  -- Kraj lipnja (prije početka srpnja)
+    AND R.DatumVrijeme >= '2025-06-01 00:00:00' 
+    AND R.DatumVrijeme < '2025-07-01 00:00:00'  
     AND NOT EXISTS (
         SELECT 1
         FROM Narudzba N
         WHERE N.KupacID = K.KupacID
-        AND N.DatumVrijeme >= '2025-06-01 00:00:00' -- Početak lipnja
-        AND N.DatumVrijeme < '2025-07-01 00:00:00'  -- Kraj lipnja
+        AND N.DatumVrijeme >= '2025-06-01 00:00:00' 
+        AND N.DatumVrijeme < '2025-07-01 00:00:00' 
     )
 ORDER BY
     K.Prezime, K.Ime;
