@@ -344,6 +344,30 @@ CREATE TABLE StavkaNabavneNarudzbe (
 );
 ```
 
+**Relacija Smjena**\
+Evidentira smjene koje zaposlenici odrađuju, uključujući vrijeme početka i završetka smjene.
+
+- *SmjenaID – Identifikator smjene, podatak tipa INTEGER. Predstavlja jedinstveni ID svake smjene.*
+- *ZaposlenikID – Strani ključ, podatak tipa INTEGER. Označava koji zaposlenik radi određenu smjenu.*
+- *DatumVrijemePocetka – Početak smjene, podatak tipa DATETIME.*
+- *DatumVrijemeZavrsetka – Kraj smjene, podatak tipa DATETIME.*
+- *PRIMARY KEY (SmjenaID) – Primarni ključ. Osigurava jedinstvenost svake smjene u tablici.*
+
+Relacije:
+
+Smjena — Zaposlenik
+Tip veze: više na jedan. Više smjena može pripadati istom zaposleniku.
+Veza se ostvaruje preko: stranog ključa ZaposlenikID.
+
+```sql
+CREATE TABLE Smjena (
+  SmjenaID int PRIMARY KEY,
+  ZaposlenikID int,
+  DatumVrijemePocetka datetime,
+  DatumVrijemeZavrsetka datetime
+);
+```
+
 ## Alter table ograničenja
 
 **Alter Table Zaposlenik**
