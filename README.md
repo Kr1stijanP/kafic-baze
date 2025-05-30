@@ -586,3 +586,281 @@ GROUP BY Z.ZaposlenikID, Z.Ime, Z.Prezime, U.NazivUloge
 ORDER BY BrojSmjena DESC, Z.Prezime;
 ```
 
+**UPIT 6**
+
+Upit 6 dohvaća sve proizvode i njihove kategorije.
+
+- *U ovom upitu svi proizvodi su uređeni po kateriji alkoholna pića, kava ili bezalkoholna pića.
+Kod SELECT-a smo stavili potrebne stupce iz obje tablice i promijenili smo ime tako da se moze bolje razumijeti.
+I na kraju smo s tablicom Proizvod sa naredbom JOIN povezali tablicu KategorijaProizvoda i 
+sa naredbom ON smo napravili da vrijednosti KategorijaID koji smo naveli u tablicu Proizvod bude jednaka s virijednosti
+kKategorijaID u tablici KategorijaProizvoda.* 
+
+```sql
+SELECT proizvod.Naziv AS NazivProizvoda, KategorijaProizvoda.NazivKategorije AS Kategorija
+FROM Proizvod 
+JOIN KategorijaProizvoda ON proizvod.KategorijaID = KategorijaProizvoda.KategorijaID;
+```
+
+**UPIT 7**
+
+Upit 7 ronalazi sve kupce sa statusom vjernosti 'Zlatni'.
+
+- *U ovom upitu naveli sva imena kupca s statusom zlatni.
+Kod SELECT smo stavili određene stupce iz tablice Kupac i sa WHERE naredbom smo rekli da kupci 
+moraju imati status 'Zlatni'.*
+
+```sql
+SELECT KupacID, Ime, Prezime, Email
+FROM Kupac
+WHERE StatusVjernosti = 'Zlatni';
+```
+
+**UPIT 8**
+
+Upit 8 broji rezervacija za svaki stol.
+
+- *U ovom uvijetu prebrojavamo koliko imamo rezervacija za svani stol.
+Kod SELECT smo uzeli određene stupce koje želimo da se ispiše iz obje tablice koje povezujemo.
+COUNT koristimo kako bi se ispisala ukupan broj rezervacija za svaki stol.
+JOIN koristimo kako bi smo povezali tablicu Rezervacija sa tablicom stol i ON smo napravili da vrijednosti StolID koji smo naveli 
+u tablicu Rezervacija bude jednaka s virijednosti StolID u tablici Stol. 
+GROUP BY korisimo da bi dobili ukupan broj rezervacija za pojedini Stol, da nemamo tu naredbu samo bi nam izracunalo
+ukupan broj rezervacija iz cijele tablice i vratio nam samo jedan broj.
+ORDER BY BrojRezervacija DESC koristio da dam izpiše broj rezervacija za svaki stol redoslijedom pocevši od najvećeg.* 
+
+```sql
+SELECT Stol.BrojStola, COUNT(Rezervacija.RezervacijaID) AS BrojRezervacija
+FROM Rezervacija 
+JOIN Stol ON Rezervacija.StolID = Stol.StolID
+GROUP BY Stol.BrojStola
+ORDER BY BrojRezervacija DESC;
+```
+
+**UPIT 9**
+
+Upit 9 prikazuje Imena kupaca koji su napravili rezervacije za stolove s kapacitetom većim od 4 osobe.
+
+- *Kod SELECTA smo stavili i naredbu DISTINCT kako bi izbjegli se isti kupac više puta ispiše jer kupac može imati više rezervacija 
+broj rezervacija.
+sa tablicom Kupac smo spojili dvije tablise i koristili ON da bi se povezane tablice podudarale sa stranim ključevima.
+Kod WHERE smo stavili sa ispiše sve kupce koje su rezervirali stolove s kapasitetom većim od 4.*
+
+```sql
+SELECT
+    DISTINCT Kupac.Ime AS ImeKupca,
+    Kupac.Prezime AS PrezimeKupca
+FROM Kupac 
+JOIN Rezervacija  ON Kupac.KupacID = Rezervacija.KupacID
+JOIN Stol  ON Rezervacija.StolID = Stol.StolID
+WHERE Stol.Kapacitet > 4;
+```
+
+**UPIT 10**
+
+Upit 10 prikazuje ukupan broj prodanih proizvoda po zaposleniku.
+
+- *U ovom upitu vidimo koliko je svaki zaposlenik prodao proizvoda.
+Kod SELECTA ispisuje nam se ime i prezime zaposlenika i koliko je ukupno prodao proizvoda sa agregacijom SUM(sn.Kolicina) i 
+nazive stupca smo preimenovali da se bolje razumije. Za naziv tablice koristimo kratice da nam bude lakše za pisati
+z = Zaposlenik i sn = StavkaNarudzbe. Prvo smo tablicu Narudžba povezali sa tablicom Zaposlenik, pa onda StavkaNarudzbe sa 
+tablicom Narudžba. GROUP BY smo koristili da iznačuna sumu prdanih proizvoda po jednom zaposleniku.
+ORDER BY UkupnoProdanihJedinica DESC koristimo da počne ispisivati od zaposlenika sa najviše prodanih proizvoda.*
+
+```sql
+SELECT z.Ime AS ImeZaposlenika, z.Prezime AS PrezimeZaposlenika, SUM(sn.Kolicina) AS UkupnoProdanihJedinica
+FROM Zaposlenik AS z
+JOIN Narudzba AS n ON z.ZaposlenikID = n.ZaposlenikID
+JOIN StavkaNarudzbe AS sn ON n.NarudzbaID = sn.NarudzbaID
+GROUP BY z.ZaposlenikID, z.Ime, z.Prezime
+ORDER BY
+    UkupnoProdanihJedinica DESC;
+```
+
+**UPIT 11**
+
+Upit 11 prikazuje opis svih rezervacija koje su potvrđene.
+
+- *SELECT RezervacijaID, KupacID, StolID, DatumVrijeme – biramo stupce koje želimo prikazati.
+FROM Rezervacija – podatke dohvaćamo iz tablice *Rezervacija*.
+WHERE Status = Potvrđena – uzimamo samo redove gdje je status rezervacije potvrđen.
+ORDER BY DatumVrijeme – rezultati su sortirani kronološki po datumu i vremenu rezervacije.*
+
+```sql
+SELECT 
+    RezervacijaID, 
+    KupacID, 
+    StolID, 
+    DatumVrijeme 
+FROM Rezervacija
+WHERE Status = 'Potvrđena'
+ORDER BY DatumVrijeme;
+```
+
+**UPIT 12**
+
+Upit 12 prikazuje popis narudžbi sa imenima kupaca i konobara.
+
+- *Ovaj upit može se koristiti kada vlasnik restorana želi dobiti detaljan pregled svih narudžbi, uključujući informacije o tome tko je naručio, tko je zaprimio narudžbu i kada se ta narudžba dogodila.
+Povezivanje se vrši pomoću ključeva KupacID i ZaposlenikID, pri čemu se koristi JOIN kako bi se dohvatili svi podaci. Imena i prezimena kupaca i konobara spajaju se funkcijom CONCAT, zbog boljeg prikaza.
+Rezultat prikazuje ID narudžbe, ime kupca, ime konobara i datum narudžbe. Pomoću ORDER BY n.DatumVrijeme DESC najnovije narudžbe prikazujemo prve.*
+
+```sql
+SELECT 
+    n.NarudzbaID,
+    CONCAT(k.Ime, ' ', k.Prezime) AS Kupac,
+    CONCAT(z.Ime, ' ', z.Prezime) AS Konobar,
+    n.DatumVrijeme
+FROM Narudzba n
+JOIN Kupac k ON n.KupacID = k.KupacID
+JOIN Zaposlenik z ON n.ZaposlenikID = z.ZaposlenikID
+ORDER BY n.DatumVrijeme DESC;
+```
+
+**UPIT 13**
+
+Upit 13 prikazuje popis kupaca koji su platili narudžbu gotovinom, te ima datumom i iznos.
+
+- *Ovaj upit vraća popis svih kupaca koji su platili narudžbu gotovinom, zajedno s datumom plaćanja i ukupnim iznosom, može koristiti kada želimo uvid u sve  gotovinske transakcije unutar sustava.
+Povezuju se Placanje, Narudzba i Kupac,  Prvo se Placanje spaja s Narudzba putem NarudzbaID, a zatim s tablicom Kupac pomoću KupacID, kako bi našli osobu koja je platila narudžbu.
+CONCAT kombinira ime i prezime kako bi se prikazali u jedinstvenom stupcu Kupac. Kroz WHERE se filtriraju samo oni zapisi koji kao način plaćanja imaju 'Gotovina'.
+Rezultati su sortirani po datumu plaćanja u silaznom redoslijedu, tako da se najnovija gotovinska plaćanja prikazuju prva. Ovaj upit pomaže u financijskoj kontroli gotovine i jednostavnom pregledu gotovinskih transakcija po kupcima.*
+
+```sql
+SELECT 
+    CONCAT(k.Ime, ' ', k.Prezime) AS Kupac,
+    p.DatumVrijeme,
+    p.Iznos
+FROM Placanje p
+JOIN Narudzba n ON p.NarudzbaID = n.NarudzbaID
+JOIN Kupac k ON n.KupacID = k.KupacID
+WHERE p.NacinPlacanja = 'Gotovina'
+ORDER BY p.DatumVrijeme DESC;
+```
+
+**UPIT 14**
+
+Upit 14 prikazuje listu lop 10 kupaca po ukupnoj potrošnji.
+
+- *Upit prikazuje top 10 kupaca koji su najviše potrošili u restoranu. To omogućuje vlasniku uvid u najvrijednije kupce. Ovo može poslužiti pri nagrađivanju određenih kupaca.
+Povezuju se Kupac, Narudzba i Placanje. Prvo se Kupac povezuje s Narudzba pomoću KupacID, a zatim se Narudzba povezuje s Placanje preko NarudzbaID. Na taj način se dolazi do svih plaćenih iznosa koje je pojedini kupac ostvario kroz svoje narudžbe.
+SUM(p.Iznos) računa ukupnu potrošnju za svakog kupca, a ROUND zaokružuje iznos na dvije decimale. Grupiranjem po KupacID, Ime i Prezime osigurava se ispravno zbrajanje po osobi, dok ORDER BY UkupnoPotroseno DESC sortira rezultate tako da se kupci koji troše najviše nalaze na vrhu.
+LIMIT 10 ograničava rezultat samo na prvih 10 kupaca.
+*
+
+```sql
+SELECT 
+    k.KupacID,
+    CONCAT(k.Ime, ' ', k.Prezime) AS Kupac,
+    ROUND(SUM(p.Iznos), 2) AS UkupnoPotroseno
+FROM Kupac k
+JOIN Narudzba n ON k.KupacID = n.KupacID
+JOIN Placanje p ON n.NarudzbaID = p.NarudzbaID
+GROUP BY k.KupacID, k.Ime, k.Prezime
+ORDER BY UkupnoPotroseno DESC
+LIMIT 10;
+```
+
+**UPIT 15**
+
+prikazuje listu top 5 proizvoda po broju narudžbi.
+
+- *Ovaj upit prikazuje nove informacije o top 5 narudžbi. To može poslužiti kako bi se prilagodili potražnji.
+Pogled Top5Proizvoda prikazuje pet najprodavanijih proizvoda prema ukupnoj količini narudžbi. Kreira se spajanjem tablice Proizvod s StavkaNarudzbe, gdje se za svaki proizvod zbraja koliko puta je naručen. Grupiranjem po nazivu proizvoda dobiva se ukupan broj naručenih jedinica, a pomoću ORDER BY i LIMIT 5 izdvajaju se oni proizvodi koji su najviše traženi.*
+
+```sql
+CREATE VIEW Top5Proizvoda AS
+SELECT 
+    p.Naziv AS Proizvod,
+    SUM(sn.Kolicina) AS UkupnaKolicina
+FROM Proizvod p
+JOIN StavkaNarudzbe sn ON p.ProizvodID = sn.ProizvodID
+GROUP BY p.Naziv
+ORDER BY UkupnaKolicina DESC
+LIMIT 5;
+```
+
+**UPIT 16**
+
+Ovaj upit prikazuje top 3 konobara prema ukupnoj vrijednosti naplaćenih narudžbi u lipnju 2025.
+
+```sql
+SELECT
+    Z.Ime,
+    Z.Prezime,
+    U.NazivUloge,
+    SUM(P.Iznos) AS UkupnaNaplacenaVrijednost
+FROM
+    Zaposlenik Z
+JOIN
+    Uloga U ON Z.UlogaID = U.UlogaID
+JOIN
+    Narudzba N ON Z.ZaposlenikID = N.ZaposlenikID
+JOIN
+    Placanje P ON N.NarudzbaID = P.NarudzbaID
+WHERE
+    U.NazivUloge = 'Konobar'
+    AND P.DatumVrijeme >= '2025-06-01 00:00:00'  -- Početak lipnja
+    AND P.DatumVrijeme < '2025-07-01 00:00:00'   -- Kraj lipnja (prije početka srpnja)
+GROUP BY
+    Z.ZaposlenikID, Z.Ime, Z.Prezime, U.NazivUloge
+ORDER BY
+    UkupnaNaplacenaVrijednost DESC
+LIMIT 3;
+```
+
+
+**UPIT 17**
+
+Ovaj upit prikazuje kupce sa 'Zlatnim' statusom vjernosti koji su imali rezervaciju u svibnju 2025., ali nisu napravili niti jednu narudžbu tog mjeseca.
+
+```sql
+SELECT
+    K.KupacID,
+    K.Ime,
+    K.Prezime,
+    K.Email,
+    K.StatusVjernosti,
+    R.DatumVrijeme AS DatumRezervacije,
+    R.Status AS StatusRezervacije
+FROM
+    Kupac K
+JOIN
+    Rezervacija R ON K.KupacID = R.KupacID
+WHERE
+    K.StatusVjernosti = 'Zlatni'
+    AND R.DatumVrijeme >= '2025-06-01 00:00:00' -- Početak lipnja
+    AND R.DatumVrijeme < '2025-07-01 00:00:00'  -- Kraj lipnja (prije početka srpnja)
+    AND NOT EXISTS (
+        SELECT 1
+        FROM Narudzba N
+        WHERE N.KupacID = K.KupacID
+        AND N.DatumVrijeme >= '2025-06-01 00:00:00' -- Početak lipnja
+        AND N.DatumVrijeme < '2025-07-01 00:00:00'  -- Kraj lipnja
+    )
+ORDER BY
+    K.Prezime, K.Ime;
+```
+    
+
+**UPIT 18**
+
+Ovaj upit prikazuje mjesečni trend prodaje za 2025. godinu: Ukupni prihod i broj jedinstvenih kupaca po mjesecu.
+    
+```sql
+SELECT
+    DATE_FORMAT(P.DatumVrijeme, '%Y-%m') AS GodinaMjesec,
+    SUM(P.Iznos) AS UkupniPrihod,
+    COUNT(DISTINCT N.KupacID) AS BrojJedinstvenihKupaca
+FROM
+    Placanje P
+JOIN
+    Narudzba N ON P.NarudzbaID = N.NarudzbaID
+WHERE
+    YEAR(P.DatumVrijeme) = 2025
+GROUP BY
+    GodinaMjesec
+ORDER BY
+    GodinaMjesec;
+```
+
