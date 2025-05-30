@@ -862,4 +862,82 @@ GROUP BY
 ORDER BY
     GodinaMjesec;
 ```
+**UPIT 19**
 
+Broj narudžbi po zaposleniku
+
+- *Upit spaja tablicu Narudzba i Zaposlenik pomoću vanjskog ključa ZaposlenikID.
+Koristi se GROUP BY kako bi se zbrojile narudžbe po svakom zaposleniku.
+COUNT funkcija prebrojava sve narudžbe.
+Rezultati su sortirani po broju narudžbi silazno, tako da su najaktivniji zaposlenici na vrhu.*
+
+```sql
+SELECT z.Ime, z.Prezime, COUNT(n.NarudzbaID) AS BrojNarudzbi
+FROM Narudzba n
+JOIN Zaposlenik z ON n.ZaposlenikID = z.ZaposlenikID
+GROUP BY z.ZaposlenikID
+ORDER BY BrojNarudzbi DESC;
+```
+
+**UPIT 20**
+
+Najprodavanija pića po kategoriji
+
+- *StavkaNarudzbe, Proizvod i KategorijaProizvoda su povezani kako bi se došlo do pića po kategorijama.
+Koristi se SUM za izračun ukupne količine prodanog pića.
+Rezultati su grupirani po nazivu kategorije i nazivu pića.
+CREATE VIEW stvara pogled TopPicaPoKategoriji za jednostavniji pristup.
+Dodatni upit: SELECT * FROM NajprodavanijaPica LIMIT 10;*
+
+```sql
+CREATE VIEW TopPicaPoKategoriji AS
+SELECT
+    kp.NazivKategorije,
+    p.Naziv AS Proizvod,
+    SUM(sn.Kolicina) AS UkupnoProdano
+FROM StavkaNarudzbe sn
+JOIN Proizvod p ON sn.ProizvodID = p.ProizvodID
+JOIN KategorijaProizvoda kp ON p.KategorijaID = kp.KategorijaID
+GROUP BY kp.NazivKategorije, p.Naziv
+ORDER BY UkupnoProdano DESC;
+SELECT * FROM TopPicaPoKategoriji LIMIT 10;
+```
+
+**UPIT 21**
+
+Vrijeme kada se narudžbe najčešće događaju 
+
+- *HOUR(DatumVrijeme) izdvaja sat iz vremena narudžbe.*
+- *COUNT broji koliko se narudžbi dogodilo u svakom satu.*
+- *Grupiranje se vrši po satu, a rezultati se sortiraju po broju narudžbi.*
+
+```sql
+SELECT 
+  HOUR(DatumVrijeme) AS Sat,
+  COUNT(*) AS BrojNarudzbi
+FROM Narudzba
+GROUP BY Sat
+ORDER BY BrojNarudzbi DESC;
+```
+
+**UPIT 22**
+
+Dani s najviše narudžbi i ukupnom zaradom tog dana
+
+- *DATE izdvaja samo datum iz vremena plaćanja, ignorirajući sat.
+COUNT broji ukupan broj plaćanja koja su se dogodila na određeni dan.
+SUM zbraja sve iznose plaćanja za svaki dan, dajući ukupnu zaradu po danu.
+GROUP BY Dan grupira rezultate po danu, tako da dobivamo jedan redak za svaki dan.
+ORDER BY BrojPlacanja DESC sortira rezultate tako da dani s najviše plaćanja budu na vrhu.
+LIMIT 7 ograničava prikaz na 7 dana s najviše plaćanja.*
+
+```sql
+SELECT 
+  DATE(p.DatumVrijeme) AS Dan,
+  COUNT(*) AS BrojPlacanja,
+  SUM(p.Iznos) AS UkupnaZarada
+FROM Placanje p
+GROUP BY Dan
+ORDER BY BrojPlacanja DESC
+LIMIT 7;
+```
