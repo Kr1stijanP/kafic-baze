@@ -235,7 +235,7 @@ Relacija Dobavljac sadrži informacije o vanjskim dobavljačima koji isporučuju
  - *Naziv* - Ime dobavljačke firme, podatak tipa VARCHAR(255),
  - *Telefon* -Kontakt podaci dobavljača, podatak tipa VARCHAR(255),
  - *Email*  - Kontakt podaci dobavljača, podatak tipa VARCHAR(255)
- -  
+   
   Relacije:
 - *Veza s ProizvodDobavljac i NabavnaNarudzba: jedan dobavljač može isporučivati više proizvoda ili sirovina*
 
@@ -291,7 +291,7 @@ Prati trenutno stanje sirovina na skladištu. Ključno za praćenje potrošnje i
  - *GranicaNarudzbe* -  Donja granica ispod koje se automatski pokreće narudžba, podatak tipa  DECIMAL
 
 Relacije:
-- * Tablica ZalihaSirovina je u vezi jedan na jedan s tablicom Sirovina, jer se za svaku sirovinu evidentira točno jedno stanje zaliha. Osigurava da svaka sirovina ima jedan zapis o trenutnoj količini i granici za ponovnu narudžbu.*
+- *Tablica ZalihaSirovina je u vezi jedan na jedan s tablicom Sirovina, jer se za svaku sirovinu evidentira točno jedno stanje zaliha. Osigurava da svaka sirovina ima jedan zapis o trenutnoj količini i granici za ponovnu narudžbu.*
 
 ```sql
 CREATE TABLE ZalihaSirovina (
