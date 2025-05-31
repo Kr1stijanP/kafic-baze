@@ -950,6 +950,6 @@ ORDER BY BrojPlacanja DESC
 LIMIT 7;
 ```
 
-##ZAKLJUČAK
+## ZAKLJUČAK
 
 Kroz ovu dokumentaciju prikazali smo strukturu baze podataka koja omogućuje učinkovito upravljanje poslovanjem kafića. Baza obuhvaća ključne entitete poput kupaca, zaposlenika, stolova, narudžbi, proizvoda, rezervacija, plaćanja i dobavljača, povezanih logičkim relacijama i referencijalnim integritetom putem stranih ključeva.
