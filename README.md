@@ -781,6 +781,12 @@ ORDER BY UkupnaKolicina DESC
 LIMIT 5;
 ```
 
+prikaz:
+
+```sql
+SELECT * FROM Top5Proizvoda
+```
+
 **UPIT 16**
 
 Ovaj upit prikazuje top 3 konobara prema ukupnoj vrijednosti naplaćenih narudžbi u lipnju 2025.
